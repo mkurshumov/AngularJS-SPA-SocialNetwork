@@ -3,86 +3,119 @@
 app.factory('userService',
     function ($http, baseServiceUrl, authService) {
         return {
-            createNewPost: function (adData, success, error) {
+            searchUsersByName: function (tag, success, error) {
                 var request = {
-                    method: 'POST',
-                    url: baseServiceUrl + '/api/ads',
-                    headers: authService.getAuthHeaders(),
-                    data: adData
+                    method: 'GET',
+                    url: baseServiceUrl + '/api/users/search?searchTerm=' + tag,
+                    headers: authService.getAuthHeaders()
                 };
-                //console.log(authService.getAuthHeaders());
                 $http(request).success(success).error(error);
             },
 
-            getUserAds: function (params, success, error) {
+            getUserFullData: function (user, success, error) {
                 var request = {
                     method: 'GET',
-                    url: baseServiceUrl + '/api/user/ads',
+                    url: baseServiceUrl + '/api/users/' + user,
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            getUserPreviewData: function (user, success, error) {
+                var request = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/api/users/' + user + '/preview',
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            getFriendsDetailedFriends: function (user, success, error) {
+                var request = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/api/users/' + user + '/friends',
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            getFriendsPreviewFriends: function (user, success, error) {
+                var request = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/api/users/' + user + '/preview',
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            getFriendWallByPages: function (user, params, success, error) {
+                var request = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/api/users/' + user + '/wall',
                     headers: authService.getAuthHeaders(),
                     params: params
                 };
                 $http(request).success(success).error(error);
             },
 
-            getUserAdById: function (id, success, error) {
+            getDataAboutMe: function (success, error) {
                 var request = {
                     method: 'GET',
-                    url: baseServiceUrl + '/api/user/ads/' + id,
+                    url: baseServiceUrl + '/api/me',
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);
             },
 
-            deactivateAd: function (id, success, error) {
-                var request = {
-                    method: 'PUT',
-                    url: baseServiceUrl + '/api/user/ads/deactivate/' + id,
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            publishAgainAd: function (id, success, error) {
-                var request = {
-                    method: 'PUT',
-                    url: baseServiceUrl + '/api/user/ads/publishagain/' + id,
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            editAd: function(id, data, success, error) {
-                var request = {
-                    method: 'PUT',
-                    url:  baseServiceUrl + '/api/user/ads/' + id,
-                    headers: authService.getAuthHeaders(),
-                    data: data
-                };
-                $http(request).success(success).error(error);
-            },
-
-            deleteAd: function (id, success, error) {
-                var request = {
-                    method: 'DELETE',
-                    url: baseServiceUrl + '/api/user/ads/' + id,
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            getUserProfile: function(success, error) {
+            getOwnFriends: function (success, error) {
                 var request = {
                     method: 'GET',
-                    url: baseServiceUrl + '/api/user/profile',
+                    url: baseServiceUrl + '/api/me/friends',
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);
             },
 
-            updateUserProfile: function(data, success, error) {
+            getFriendRequests: function (success, error) {
+                var request = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/api/me/requests',
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            sendFriendRequest: function (user, success, error) {
+                var request = {
+                    method: 'POST',
+                    url: baseServiceUrl + '/api/me/requests/' + user,
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            approveFriendRequest: function (requestId, success, error) {
+                var request = {
+                    method: 'POST',
+                    url: baseServiceUrl + '/api/me/requests/' + requestId + '?status=approve',
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            rejectFriendRequest: function (requestId, success, error) {
+                var request = {
+                    method: 'POST',
+                    url: baseServiceUrl + '/api/me/requests/' + requestId + '?status=rejected',
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            editProfile: function(data, success, error) {
                 var request = {
                     method: 'PUT',
-                    url: baseServiceUrl + '/api/user/profile',
+                    url: baseServiceUrl + '/api/me',
                     headers: authService.getAuthHeaders(),
                     data: data
                 };
@@ -92,7 +125,7 @@ app.factory('userService',
             changePassword: function(data, success, error) {
                 var request = {
                     method: 'PUT',
-                    url: baseServiceUrl + '/api/user/changepassword',
+                    url: baseServiceUrl + '/api/me/changepassword',
                     headers: authService.getAuthHeaders(),
                     data: data
                 };
