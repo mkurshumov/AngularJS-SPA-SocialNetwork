@@ -1,0 +1,51 @@
+<form ng-controller="LoginController">
+    <fieldset>
+        <legend>Login</legend>
+        <p>
+            <label for="loginUsername">Username</label>
+            <input type="text" id="loginUsername" ng-model="userData.username" required="required"/>
+        </p>
+        <p>
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" ng-model="userData.password" required="required"/>
+        </p>
+        <p>
+            <a ng-click="login(userData)" class="button">Login</a>
+        </p>
+    </fieldset>
+</form>
+
+<form ng-controller="RegisterController">
+    <fieldset>
+        <legend>Register</legend>
+        <p>
+            <label for="regUsername">Username</label>
+            <input type="text" id="regUsername" ng-model="userData.username" required="required"/>
+        </p>
+        <p>
+            <label for="regPassword">Password</label>
+            <input type="password" id="regPassword" ng-model="userData.password" required="required"/>
+        </p>
+        <p>
+            <label for="regConfirmPassword">Confirm Password</label>
+            <input type="password" id="regConfirmPassword" ng-model="userData.confirmPassword" required="required"/>
+        </p>
+        <p>
+            <label for="name">Name</label>
+            <input type="text" id="name" ng-model="userData.name" required="required"/>
+        </p>
+        <p>
+            <label for="email">Email</label>
+            <input type="email" id="email" ng-model="userData.email" required="required"/>
+        </p>
+        <p id="gender">
+            Gender
+            <input type="radio" name="gender" value="male"/>Male
+            <input type="radio" name="gender" value="female"/>Female
+            <input type="radio" name="gender" value="other"/>Other
+        </p>
+        <p>
+            <a ng-click="register(userData)" class="button">Register</a>
+        </p>
+    </fieldset>
+</form>

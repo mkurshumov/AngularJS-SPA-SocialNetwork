@@ -1,0 +1,8 @@
+<div ng-if="authService.isLoggedIn()">
+    <span>{{authService.getCurrentUser()}}</span>
+    <button>News Feed</button>
+    <button>Friends</button>
+    <button>Edit Profile</button>
+    <button>Change Password</button>
+    <button ng-click="logout()">Logout</button>
+</div>
