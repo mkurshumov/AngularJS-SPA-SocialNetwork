@@ -1,10 +1,12 @@
-.pesho {
-	color:red;
+#wrapper {
+	margin-left: 20%;
+	margin-right: 20%;
 }
 
-.pesho:hover {
-	color:blue 
+#app-header {
+	text-align: center;
 }
-.even_row {
-	background: red;
+
+#app-footer {
+	text-align: center;
 }

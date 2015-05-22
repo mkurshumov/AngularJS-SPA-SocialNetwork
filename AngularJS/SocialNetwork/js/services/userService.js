@@ -42,18 +42,17 @@ app.factory('userService',
             getFriendsPreviewFriends: function (user, success, error) {
                 var request = {
                     method: 'GET',
-                    url: baseServiceUrl + '/api/users/' + user + '/preview',
+                    url: baseServiceUrl + '/api/users/' + user + '/friends/preview',
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);
             },
 
-            getFriendWallByPages: function (user, params, success, error) {
+            getFriendWallByPages: function (user, postId, pageSize, success, error) {
                 var request = {
                     method: 'GET',
-                    url: baseServiceUrl + '/api/users/' + user + '/wall',
-                    headers: authService.getAuthHeaders(),
-                    params: params
+                    url: baseServiceUrl + '/api/users/' + user + '/wall?StartPostId=' + postId + '&PageSize=' + pageSize,
+                    headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);
             },

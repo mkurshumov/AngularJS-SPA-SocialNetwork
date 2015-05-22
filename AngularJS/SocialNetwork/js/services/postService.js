@@ -1,14 +1,35 @@
 'use strict';
 
+//app.factory('newsFeedService',
+//    function ($resource, baseServiceUrl, authService) {
+//        var newsFeedResource = $resource(
+//            baseServiceUrl + '/api/me/feed',
+//            null,
+//            {
+//                'getAll': {
+//                    method:'GET',
+//                    headers: authService.getAuthHeaders()
+//                }
+//            }
+//        );
+//
+//        return {
+//            getNewsFeed: function (params, success, error) {
+//                return newsFeedResource.getAll(params, success, error);
+//            }
+//        }
+//    }
+//);
+
 app.factory('postService',
     function ($http, baseServiceUrl, authService) {
         return {
-            getNewsFeedPages: function (params, success, error) {
+            getNewsFeedPages: function (success, error) {
                 var request = {
                     method: 'GET',
-                    url: baseServiceUrl + 'api/me/feed',
-                    headers: authService.getAuthHeaders(),
-                    params: params
+                    url: baseServiceUrl + '/api/me/feed?StartPostId=&PageSize=5',
+                    //'?StartPostId=&PageSize=' + pageSize,
+                    headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);
             },
@@ -16,7 +37,7 @@ app.factory('postService',
             getPostById: function (id, success, error) {
                 var request = {
                     method: 'GET',
-                    url: baseServiceUrl + 'api/Posts/' + id,
+                    url: baseServiceUrl + '/api/Posts/' + id,
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);
@@ -25,7 +46,7 @@ app.factory('postService',
             getPostDetailedLikes: function (id, success, error) {
                 var request = {
                     method: 'GET',
-                    url: baseServiceUrl + 'api/Posts/' + id + '/likes',
+                    url: baseServiceUrl + '/api/Posts/' + id + '/likes',
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);
@@ -34,7 +55,7 @@ app.factory('postService',
             getPostPreviewLikes: function (id, success, error) {
                 var request = {
                     method: 'GET',
-                    url: baseServiceUrl + 'api/Posts/' + id + '/likes/preview',
+                    url: baseServiceUrl + '/api/Posts/' + id + '/likes/preview',
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);
@@ -105,6 +126,16 @@ app.factory('postService',
                 $http(request).success(success).error(error);
             },
 
+            editPost: function (postId, commentId, data, success, error) {
+                var request = {
+                    method: 'PUT',
+                    url: baseServiceUrl + '/api/Posts/' + postId,
+                    headers: authService.getAuthHeaders(),
+                    data: data
+                };
+                $http(request).success(success).error(error);
+            },
+
             editPostComment: function (postId, commentId, data, success, error) {
                 var request = {
                     method: 'PUT',
@@ -118,7 +149,7 @@ app.factory('postService',
             deletePostById: function (id, success, error) {
                 var request = {
                     method: 'DELETE',
-                    url: baseServiceUrl + 'api/Posts/' + id,
+                    url: baseServiceUrl + '/api/Posts/' + id,
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);

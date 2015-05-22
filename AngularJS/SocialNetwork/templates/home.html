@@ -1,7 +1,39 @@
-<h1>HOME</h1>
+<h1>News Feed</h1>
 
-<!--<div ui-view="users">-->
-    <!--<div>-->
-        <!--<p ng-repeat="user in users | filter: global.search">{{ user }}</p>-->
-    <!--</div>-->
-<!--</div>-->
+<pagination total-items="newsFeed.numItems" ng-model="newsFeedParams.startPage"
+            items-per-page="newsFeedParams.pageSize" ng-change="reloadNewsFeed()"
+            max-size="9" boundary-links="true">
+</pagination>
+
+<ul class="newsFeed">
+    <li ng-repeat="post in newsFeed" class="box">
+        <div>
+            <div ng-if='post.author.profileImageData'>
+                <img class="post-user-image" ng-src="{{post.author.profileImageData}}" />
+            </div>
+            <span>{{post.author.name}}</span>
+            <span>{{post.date | date:'dd-MMM-yyyy'}}</span>
+            <p>{{post.postContent}}</p>
+            <span>Likes: {{post.likesCount}}</span>
+            <span>Comments: {{post.totalCommentCount}}</span>
+        </div>
+        <ul>
+            <li ng-repeat="comment in post.comments">
+                <div>
+                    <div ng-if='comment.author.profileImageData'>
+                        <img class="post-user-image" ng-src="{{comment.author.profileImageData}}" />
+                    </div>
+                    <span>{{comment.author.name}}</span>
+                    <span>{{comment.date | date:'dd-MMM-yyyy'}}</span>
+                    <p>{{comment.commentContent}}</p>
+                    <span>Likes: {{comment.likesCount}}</span>
+                </div>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<div ng-if="newsFeed.length==0" class="box no-data">
+    No News Feed found.
+</div>
+

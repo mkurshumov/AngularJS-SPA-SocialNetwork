@@ -1,9 +1,10 @@
 <div ng-if="authService.isLoggedIn()">
+    <img ng-src="{{userData.profileImageData}}"/>
     <span>{{authService.getCurrentUser()}}</span>
-    <button>News Feed</button>
+    <button><a href="#/user/home">News Feed</a></button>
     <button>Friends</button>
-    <button>Edit Profile</button>
-    <button>Change Password</button>
+    <button><a href="#/user/profile">Edit Profile</a></button>
+    <button><a href="#/user/changepassword">Change Password</a></button>
     <button ng-click="logout()">Logout</button>
     <!--<form>-->
         <!--<input ng-model="global.search" ng-change="userSearch(global.search)" type="text"/>-->

@@ -1,20 +1,13 @@
 'use strict';
 
-// The AppController holds the presentation logic for the entire app (common for all screens)
 app.controller('AppController',
-    function ($http, $scope, $location, authService, notifyService) {
-        // Put the authService in the $scope to make it accessible from all screens
+    function ($scope, $location, authService, notifyService) {
         $scope.authService = authService;
         $scope.location = $location;
-        $scope.notifyService = notifyService;
         $scope.logout = function () {
             authService.logout();
             notifyService.showInfo('Logout Successful');
             $location.path('/');
         };
-        //$scope.userService = userService;
-        //$scope.userSearch = function () {
-        //    userService.searchUsersByName();
-        //}
     }
 );

@@ -1,23 +1,25 @@
 'use strict';
 
 app.controller('HomeController',
-    function ($scope, notifyService) {
-        //$scope.postsParams = {
-        //    'startPage' : 1,
+    function ($scope, notifyService, pageSize, postService) {
+        //$scope.newsFeedParams = {
+        //    'postId' : 1,
         //    'pageSize' : pageSize
         //};
 
-        //$scope.reloadPosts = function () {
-        //    postsService.getPosts(
-        //        $scope.postsParams,
-        //        function success(data) {
-        //            $scope.posts = data;
-        //        },
-        //        function error(err) {
-        //            notifyService.showError('Cannot load news feed', err);
-        //        }
-        //    );
-        //};
+        $scope.reloadNewsFeed = function () {
+            postService.getNewsFeedPages(
+                function success(data) {
+                    $scope.newsFeed = data;
+                },
+                function error(err) {
+                    notifyService.showError('Error loading news feed', err);
+                }
+            );
+        };
 
+        $scope.reloadNewsFeed();
     }
 );
+
+//GET api/Ads?CategoryId={CategoryId}&TownId={TownId}&StartPage={StartPage}&PageSize={PageSize}
