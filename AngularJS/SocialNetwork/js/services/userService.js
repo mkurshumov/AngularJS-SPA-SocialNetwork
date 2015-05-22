@@ -3,10 +3,10 @@
 app.factory('userService',
     function ($http, baseServiceUrl, authService) {
         return {
-            searchUsersByName: function (tag, success, error) {
+            searchUsersByName: function (searchTerm, success, error) {
                 var request = {
                     method: 'GET',
-                    url: baseServiceUrl + '/api/users/search?searchTerm=' + tag,
+                    url: baseServiceUrl + '/api/users/search?searchTerm=' + searchTerm,
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);
@@ -70,6 +70,15 @@ app.factory('userService',
                 var request = {
                     method: 'GET',
                     url: baseServiceUrl + '/api/me/friends',
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            getOwnFriendsPreview: function (success, error) {
+                var request = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/api/me/friends/preview',
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);

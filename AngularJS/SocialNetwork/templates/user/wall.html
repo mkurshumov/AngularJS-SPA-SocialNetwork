@@ -1,0 +1,34 @@
+<header ng-if="isLogged()" ng-include="'templates/navbar.html'" ng-controller="userController"></header>
+
+<main ng-controller="userController" ng-init="loadFriendWall()">
+
+    <div ng-controller="profileController" ng-if="userFullData">
+        <div ng-if="userFullData">
+            <img ng-src="{{userFullData.profileImageData}}" err-src="{{defaultProfileImage}}" class="profile-image"/>
+        </div>
+
+        <div>
+            <h2>{{userFullData.name}}</h2>
+            <div>
+                <button ng-if="userFullData.status === 'invite'" type="submit" ng-click="sendFriendRequest(userFullData)">Send Friend Request</button>
+                <button ng-if="userFullData.status === 'pending'" type="submit" disabled>Waiting for Approval</button>
+                <button ng-if="userFullData.status === 'friend'" type="submit" disabled>Friend</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+        <div ng-if="isOwnWall || userFullData.isFriend" ng-include="'templates/post-box.html'">
+        </div>
+        <div ng-if="isLogged() && userFullData" ng-include="'templates/posts-box.html'" infinite-scroll="loadFriendWall()" infinite-scroll-disabled='busy' infinite-scroll-distance="0">
+        </div>
+    </div>
+    <div ng-controller="profileController">
+        <div ng-if="isOwnWall" ng-init="getOwnFriendsPreview()" ng-include="'templates/friends-preview.html'">
+        </div>
+        <div ng-if="!isOwnWall && friendsPreview" ng-init="getFriendsPreviewFriends()" ng-include="'templates/friends-preview.html'">
+        </div>
+    </div>
+
+</main>

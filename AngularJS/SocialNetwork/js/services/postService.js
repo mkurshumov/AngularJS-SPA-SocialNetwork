@@ -1,34 +1,12 @@
 'use strict';
 
-//app.factory('newsFeedService',
-//    function ($resource, baseServiceUrl, authService) {
-//        var newsFeedResource = $resource(
-//            baseServiceUrl + '/api/me/feed',
-//            null,
-//            {
-//                'getAll': {
-//                    method:'GET',
-//                    headers: authService.getAuthHeaders()
-//                }
-//            }
-//        );
-//
-//        return {
-//            getNewsFeed: function (params, success, error) {
-//                return newsFeedResource.getAll(params, success, error);
-//            }
-//        }
-//    }
-//);
-
 app.factory('postService',
     function ($http, baseServiceUrl, authService) {
         return {
-            getNewsFeedPages: function (success, error) {
+            getNewsFeedPages: function (startPostId, pageSize, success, error) {
                 var request = {
                     method: 'GET',
-                    url: baseServiceUrl + '/api/me/feed?StartPostId=&PageSize=5',
-                    //'?StartPostId=&PageSize=' + pageSize,
+                    url: baseServiceUrl + '/api/me/feed?StartPostId=' + startPostId + '&PageSize=' + pageSize,
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);
@@ -107,7 +85,7 @@ app.factory('postService',
                 $http(request).success(success).error(error);
             },
 
-            likeComment: function (postId, commentId, data, success, error) {
+            likeComment: function (postId, commentId, success, error) {
                 var request = {
                     method: 'POST',
                     url: baseServiceUrl + '/api/posts/' + postId + '/comments/' + commentId + '/likes',
