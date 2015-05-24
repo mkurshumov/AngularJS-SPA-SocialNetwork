@@ -1,0 +1,23 @@
+<nav>
+    <div>
+        <a href="#/">Home</a>
+        <a href="#/settings/edit/profile">Edit Profile</a>
+        <a href="#/settings/edit/password">Change Password</a>
+        <div ng-controller="profileController">
+            <input type="text" ng-model="searchTerm" ng-change="searchUser(searchTerm)" placeholder="Search" ng-blur="clearSearchResults()"/>
+        </div>
+
+        <div ng-if="searchResults">
+            <ul>
+                <li ng-repeat="user in searchResults">
+                    <img ng-src="{{user.profileImageData}}"/>
+                    <span>{{user.name}}</span>
+                </li>
+            </ul>
+        </div>
+
+        <div ng-controller="userController">
+            <button ng-click="logout()">Logout</button>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,19 @@
+<form ng-controller="userController" ng-submit="login()" name="loginForm">
+    <fieldset>
+
+        <legend>Login</legend>
+        <div>
+            <label for="log-username">Username</label>
+            <input id="log-username" type="text" ng-model="loginData.username" required/>
+        </div>
+        <div>
+            <label for="log-pass">Password</label>
+            <input id="log-pass" type="password" ng-model="loginData.password" required/>
+        </div>
+
+        <button type="submit" ng-disabled="loginForm.$invalid">Login</button>
+        <span>or</span>
+        <a href="#/register">Register</a>
+
+    </fieldset>
+</form>

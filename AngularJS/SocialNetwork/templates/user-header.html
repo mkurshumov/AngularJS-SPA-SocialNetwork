@@ -1,0 +1,16 @@
+<div ng-if="userFullData">
+    <img ng-src="{{userFullData.profileImageData}}" err-src="{{defaultProfileImage}}" alt="profile picture" class="midbig-thumbnail"/>
+</div>
+
+<div>
+    <h2>
+        <a href="#/user/{{userFullData.username}}/wall/">{{userFullData.name}}</a>
+    </h2>
+
+    <div>
+        <button ng-if="userFullData.status === 'invite'" type="submit" ng-click="sendFriendRequest(userFullData)">Send Friend Request</button>
+        <button ng-if="userFullData.status === 'friend'" disabled>Friend</button>
+        <button ng-if="userFullData.status === 'pending'" disabled>Waiting for Approval</button>
+    </div>
+
+</div>

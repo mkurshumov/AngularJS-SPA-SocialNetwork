@@ -1,120 +1,12 @@
 'use strict';
 
 app.factory('userService',
-    function ($http, baseServiceUrl, authService) {
+    function ($http, BASE_URL, authService) {
         return {
-            searchUsersByName: function (searchTerm, success, error) {
-                var request = {
-                    method: 'GET',
-                    url: baseServiceUrl + '/api/users/search?searchTerm=' + searchTerm,
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            getUserFullData: function (user, success, error) {
-                var request = {
-                    method: 'GET',
-                    url: baseServiceUrl + '/api/users/' + user,
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            getUserPreviewData: function (user, success, error) {
-                var request = {
-                    method: 'GET',
-                    url: baseServiceUrl + '/api/users/' + user + '/preview',
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            getFriendsDetailedFriends: function (user, success, error) {
-                var request = {
-                    method: 'GET',
-                    url: baseServiceUrl + '/api/users/' + user + '/friends',
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            getFriendsPreviewFriends: function (user, success, error) {
-                var request = {
-                    method: 'GET',
-                    url: baseServiceUrl + '/api/users/' + user + '/friends/preview',
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            getFriendWallByPages: function (user, postId, pageSize, success, error) {
-                var request = {
-                    method: 'GET',
-                    url: baseServiceUrl + '/api/users/' + user + '/wall?StartPostId=' + postId + '&PageSize=' + pageSize,
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
             getDataAboutMe: function (success, error) {
                 var request = {
                     method: 'GET',
-                    url: baseServiceUrl + '/api/me',
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            getOwnFriends: function (success, error) {
-                var request = {
-                    method: 'GET',
-                    url: baseServiceUrl + '/api/me/friends',
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            getOwnFriendsPreview: function (success, error) {
-                var request = {
-                    method: 'GET',
-                    url: baseServiceUrl + '/api/me/friends/preview',
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            getFriendRequests: function (success, error) {
-                var request = {
-                    method: 'GET',
-                    url: baseServiceUrl + '/api/me/requests',
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            sendFriendRequest: function (user, success, error) {
-                var request = {
-                    method: 'POST',
-                    url: baseServiceUrl + '/api/me/requests/' + user,
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            approveFriendRequest: function (requestId, success, error) {
-                var request = {
-                    method: 'POST',
-                    url: baseServiceUrl + '/api/me/requests/' + requestId + '?status=approve',
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            rejectFriendRequest: function (requestId, success, error) {
-                var request = {
-                    method: 'POST',
-                    url: baseServiceUrl + '/api/me/requests/' + requestId + '?status=rejected',
+                    url: BASE_URL + 'me',
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);
@@ -123,7 +15,7 @@ app.factory('userService',
             editProfile: function(data, success, error) {
                 var request = {
                     method: 'PUT',
-                    url: baseServiceUrl + '/api/me',
+                    url: BASE_URL + 'me',
                     headers: authService.getAuthHeaders(),
                     data: data
                 };
@@ -133,9 +25,108 @@ app.factory('userService',
             changePassword: function(data, success, error) {
                 var request = {
                     method: 'PUT',
-                    url: baseServiceUrl + '/api/me/changepassword',
+                    url: BASE_URL + 'me/changepassword',
                     headers: authService.getAuthHeaders(),
                     data: data
+                };
+                $http(request).success(success).error(error);
+            },
+
+            getUserFullData: function (user, success, error) {
+                var request = {
+                    method: 'GET',
+                    url: BASE_URL + 'users/' + user,
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            getUserPreviewData: function (user, success, error) {
+                var request = {
+                    method: 'GET',
+                    url: BASE_URL + 'users/' + user + '/preview',
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            getFriendsDetailedFriends: function (user, success, error) {
+                var request = {
+                    method: 'GET',
+                    url: BASE_URL + 'users/' + user + '/friends',
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            getFriendsPreviewFriends: function (user, success, error) {
+                var request = {
+                    method: 'GET',
+                    url: BASE_URL + 'users/' + user + '/friends/preview',
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            getUserWall: function (user, postId, pageSize, success, error) {
+                var request = {
+                    method: 'GET',
+                    url: BASE_URL + 'users/' + user + '/wall?StartPostId=' + postId + '&PageSize=' + pageSize,
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            getOwnFriends: function (success, error) {
+                var request = {
+                    method: 'GET',
+                    url: BASE_URL + 'me/friends',
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            getOwnFriendsPreview: function (success, error) {
+                var request = {
+                    method: 'GET',
+                    url: BASE_URL + 'me/friends/preview',
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            getFriendRequests: function (success, error) {
+                var request = {
+                    method: 'GET',
+                    url: BASE_URL + 'me/requests',
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            sendFriendRequest: function (user, success, error) {
+                var request = {
+                    method: 'POST',
+                    url: BASE_URL + 'me/requests/' + user,
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            approveFriendRequest: function (requestId, success, error) {
+                var request = {
+                    method: 'POST',
+                    url: BASE_URL + 'me/requests/' + requestId + '?status=approve',
+                    headers: authService.getAuthHeaders()
+                };
+                $http(request).success(success).error(error);
+            },
+
+            rejectFriendRequest: function (requestId, success, error) {
+                var request = {
+                    method: 'POST',
+                    url: BASE_URL + 'me/requests/' + requestId + '?status=rejected',
+                    headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);
             }

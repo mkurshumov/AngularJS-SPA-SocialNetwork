@@ -1,0 +1,18 @@
+<div ng-if="previewData" ng-cloak class="media" ng-controller="profileController">
+
+    <div>
+        <img ng-src="{{previewData.image}}" alt="profile picture" class="midbig-thumbnail"/>
+    </div>
+
+    <div>
+        <a ng-click="hidePopover()" href="#/user/{{previewData.username}}/wall/">
+            <h4>{{previewData.name}}</h4>
+        </a>
+
+        <button ng-if="previewData.status === 'invite'" type="submit" ng-click="sendFriendRequest(previewData)">Send Friend Request</button>
+        <button ng-if="previewData.status === 'friend'" disabled>Friend</button>
+        <button ng-if="previewData.status === 'pending'" disabled>Waiting for Approval</button>
+    </div>
+
+    <span  ng-click="hideUserPreview(); hidePopover();" class="preview-close glyphicon glyphicon-remove"></span>
+</div>

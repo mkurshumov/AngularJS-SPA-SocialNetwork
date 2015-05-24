@@ -1,0 +1,4 @@
+<form ng-controller="postsController" name="addPostForm" ng-submit="addPost()">
+    <textarea ng-model="postData.postContent" placeholder="post content" required></textarea>
+    <button type="submit" ng-disabled="addPostForm.$invalid">Add</button>
+</form>

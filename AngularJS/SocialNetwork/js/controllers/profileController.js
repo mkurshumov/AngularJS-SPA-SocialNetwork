@@ -1,15 +1,13 @@
 'use strict';
 
-app.controller('homeController',
-    function ($scope, $location, notifyService, userService, authService, postService, pageSize) {
-        var startPostId;
-        $scope.posts = [];
+app.controller('profileController',
+    function ($scope, $location, $timeout, notifyService, userService, authService, searchService) {
 
         $scope.getDataAboutMe = function () {
             if (authService.isLoggedIn()) {
                 userService.getDataAboutMe(
                     function success(data) {
-                        $scope.ownData = data;
+                        $scope.userData = data;
                     },
                     function error(err) {
                         notifyService.showError('Failed to get own data', err);
@@ -20,9 +18,9 @@ app.controller('homeController',
 
         $scope.editProfile = function () {
             if (authService.isLoggedIn()) {
-                userService.editProfile($scope.ownData,
+                userService.editProfile($scope.userData,
                     function success() {
-                        notifyService.showInfo('Successfully edited profile');
+                        notifyService.showInfo('Profile successfully edited');
                     },
                     function error(err) {
                         notifyService.showError('Failed to edit profile', err);
@@ -33,9 +31,9 @@ app.controller('homeController',
 
         $scope.changePassword = function () {
             if (authService.isLoggedIn()) {
-                userService.changePassword($scope.passwordUpdate,
+                userService.changePassword($scope.userData,
                     function success() {
-                        notifyService.showInfo('Successfully changed password');
+                        notifyService.showInfo('Password successfully changed');
                         $location.path('/');
                     },
                     function error(err) {
@@ -45,27 +43,33 @@ app.controller('homeController',
             }
         };
 
-        $scope.loadNewsFeed = function () {
-            if (authService.isLoggedIn()) {
-                postService.getNewsFeedPages(pageSize, startPostId,
+        $scope.search = function () {
+            if (authService.isLoggedIn() && $scope.searchTerm.trim() !== '') {
+                searchService.searchUser($scope.searchTerm,
                     function success(data) {
-                        $scope.posts = $scope.posts.concat(data);
-                        if ($scope.posts.length > 0) {
-                            startPostId = $scope.posts[$scope.posts.length - 1].id;
-                        }
+                        $scope.searchResults = data;
                     },
                     function error(err) {
-                        notifyService.showError('Failed to load News Feed', err);
+
                     }
                 )
+            } else {
+                $scope.searchResults = undefined;
             }
         };
 
-        $scope.getOwnFriends = function () {
+        $scope.clearSearchResults = function () {
+            $timeout(function () {
+                $scope.searchResults = undefined;
+                $scope.searchTerm = '';
+            }, 600);
+        };
+
+        $scope.loadOwnFriends = function () {
             if (authService.isLoggedIn()) {
                 userService.getOwnFriends(
                     function success(data) {
-                        $scope.ownFriends = data;
+                        $scope.friends = data;
                     },
                     function error(err) {
                         notifyService.showError('Failed to load friends list', err);
@@ -74,11 +78,11 @@ app.controller('homeController',
             }
         };
 
-        $scope.getOwnFriendsPreview = function () {
+        $scope.loadOwnFriendsPreview = function () {
             if (authService.isLoggedIn()) {
                 userService.getOwnFriendsPreview(
                     function success(data) {
-                        data.userFriendsUrl = '#/friends/';
+                        data.friendsUrl = '#/user/' + $scope.username + '/friends/';
                         $scope.friendsPreview = data;
                     },
                     function error(err) {
@@ -134,8 +138,12 @@ app.controller('homeController',
             }
         };
 
-        $scope.uploadClick = function () {
+        $scope.uploadProfileImageClick = function () {
             angular.element('#profile-image').trigger('click');
+        };
+
+        $scope.uploadCoverImageClick = function () {
+            angular.element('#cover-image').trigger('click');
         };
 
         $scope.sendFriendRequest = function (previewData) {
@@ -152,8 +160,18 @@ app.controller('homeController',
             }
         };
 
-        //$scope.getFriendRequests = function () {
-        //
-        //}
+        $scope.loadFriendRequests = function () {
+            if (authService.isLoggedIn()) {
+                userService.getFriendRequests(
+                    function success(data) {
+
+                    },
+                    function error(err) {
+                        notifyService.showError('Failed to load friend requests', err)
+                    }
+                )
+            }
+        };
+
     }
 );

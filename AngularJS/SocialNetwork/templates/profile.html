@@ -1,0 +1,29 @@
+<form ng-if="isLoggedIn()" name="editProfileForm" ng-submit="editProfile(userData)">
+    <fieldset ng-init="getDataAboutMe()">
+        <legend>Edit Profile</legend>
+        <div>
+            <img ng-src="{{userData.profileImageData}}"/>
+        </div>
+        <span>Size limit: 128KB</span>
+        <div>
+            <img ng-src="{{userData.coverImageData}}"/>
+        </div>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" ng-model="userData.name" required/>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" ng-model="userData.email" placeholder="example@yahoo.com" required/>
+        </div>
+        <div>
+            <label>Gender</label>
+            <input type="radio" name="gender" ng-model="userData.gender" ng-value="1"/>Male
+            <input type="radio" name="gender" ng-model="userData.gender" ng-value="2"/>Female
+            <input type="radio" name="gender" ng-model="userData.gender" ng-value="3"/>Other
+        </div>
+
+        <button type="submit" ng-disabled="editProfileForm.$invalid">Edit Profile</button>
+        <a href="#/">Cancel</a>
+    </fieldset>
+</form>

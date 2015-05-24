@@ -1,36 +1,39 @@
 'use strict';
 
-var app = angular.module('app', ['ngRoute', 'ngResource', 'ui.bootstrap', 'infinite-scroll']);
-
-app.constant({
-    'BASE_URL': 'http://softuni-social-network.azurewebsites.net/api/',
-    'PAGE_SIZE': 5,
-    'DEFAULT_PROFILE_IMAGE': 'data:image/png;base64',
-    'DEFAULT_COVER_IMAGE': 'data:image/png;base64'
-});
-
-app.config(function ($routeProvider) {
+var app = angular
+    .module('app', ['ngRoute', 'ngResource', 'ui.bootstrap'])
+    .constant({
+        'BASE_URL': 'http://softuni-social-network.azurewebsites.net/api/',
+        'PAGE_SIZE': 5,
+        'DEFAULT_PROFILE_IMAGE': 'data:image/png;base64',
+        'DEFAULT_COVER_IMAGE': 'data:image/png;base64'
+    })
+    .config(function ($routeProvider) {
 
     $routeProvider
+        .when('/', {
+            templateUrl: 'templates/home.html',
+            controller: 'appController'
+        })
         .when('/login/', {
             templateUrl: 'templates/login.html',
-            controller: 'appController'
+            controller: 'userController'
         })
         .when('/register/', {
             templateUrl: 'templates/register.html',
-            controller: 'appController'
+            controller: 'userController'
         })
         .when('/user/:username/wall', {
             templateUrl: 'templates/wall.html',
             controller: 'appController'
         })
-        .when('/settings/edit/info', {
+        .when('/settings/edit/profile', {
             templateUrl: 'templates/profile.html',
-            controller: 'appController'
+            controller: 'profileController'
         })
         .when('/settings/edit/password', {
-            templateUrl: 'templates/password.html',
-            controller: 'appController'
+            templateUrl: 'templates/change-password.html',
+            controller: 'profileController'
         })
         .when('/friends/', {
             templateUrl: 'templates/friends.html',
@@ -40,9 +43,6 @@ app.config(function ($routeProvider) {
             templateUrl: 'templates/friends-requests.html',
             controller: 'appController'
         })
-        .when('/', {
-            templateUrl: 'templates/home.html',
-            controller: 'appController'
-        })
         .otherwise({redirectTo: '/'})
-});
+    }
+);

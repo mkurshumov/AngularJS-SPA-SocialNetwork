@@ -1,15 +1,15 @@
 'use strict';
 
 app.controller('appController',
-    function ($scope, $location, $routeParams, userService, authService, notifyService, defaultProfileImage, defaultCoverImage) {
+    function ($scope, $location, $routeParams, userService, authService, notifyService, postsService, DEFAULT_PROFILE_IMAGE, DEFAULT_COVER_IMAGE) {
 
-        $scope.isLogged = function () {
+        $scope.isLoggedIn = function () {
             return authService.isLoggedIn();
         };
 
         $scope.username = authService.getCurrentUser();
-        $scope.defaultProfileImage = defaultProfileImage;
-        $scope.defaultCoverImage = defaultCoverImage;
+        $scope.defaultProfileImage = DEFAULT_PROFILE_IMAGE;
+        $scope.defaultCoverImage = DEFAULT_COVER_IMAGE;
         $scope.showFriendRequest = false;
         $scope.isOwnNewsFeed = $location.path() === '/';
         $scope.isOwnWall = authService.getCurrentUser() === $routeParams['username'];
@@ -18,7 +18,7 @@ app.controller('appController',
             if (authService.isLoggedIn()) {
                 userService.getFriendRequests(
                     function success(data) {
-                        $scope.pendingRequests = data;
+                        $scope.friendRequests = data;
                     },
                     function error(err) {
                         notifyService.showError('Failed to show friends requests', err);
@@ -31,8 +31,8 @@ app.controller('appController',
             if (authService.isLoggedIn()) {
                 userService.approveFriendRequest(request.id,
                     function success() {
-                        var index = $scope.pendingRequests.indexOf(request);
-                        $scope.pendingRequests.splice(index, 1);
+                        var index = $scope.friendRequests.indexOf(request);
+                        $scope.friendRequests.splice(index, 1);
                         notifyService.showInfo('Friend request approved');
                     },
                     function error(err) {
@@ -44,10 +44,10 @@ app.controller('appController',
 
         $scope.rejectFriendRequest = function (request) {
             if (authService.isLoggedIn()) {
-                userService.approveFriendRequest(request.id,
+                userService.rejectFriendRequest(request.id,
                     function success() {
-                        var index = $scope.pendingRequests.indexOf(request);
-                        $scope.pendingRequests.splice(index, 1);
+                        var index = $scope.friendRequests.indexOf(request);
+                        $scope.friendRequests.splice(index, 1);
                         notifyService.showInfo('Friend request rejected');
                     },
                     function error(err) {

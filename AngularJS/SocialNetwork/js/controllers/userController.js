@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('userController',
-    function ($scope, $location, $routeParams, $timeout, userService, authService, notifyService, pageSize) {
+    function ($scope, $location, $routeParams, $timeout, userService, authService, notifyService, PAGE_SIZE) {
         var startPostId;
         $scope.posts = [];
 
@@ -47,45 +47,33 @@ app.controller('userController',
             }
         };
 
-        $scope.loadUserWall = function () {
-            if (authService.isLoggedIn()) {
-                userService.getFriendWallByPages($routeParams['username'], startPostId, pageSize,
+        $scope.loadUserData = function () {
+            if (authService.isLoggedIn) {
+                userService.getUserFullData($routeParams['username'],
                     function success(data) {
-                        $scope.posts = $scope.posts.concat(data);
-                        if ($scope.posts.length > 0) {
-                            startPostId = $scope.posts[$scope.posts.length - 1].id;
+                        $scope.userFullData = data;
+                        if (authService.getCurrentUser() !== data.username) {
+                            if (data.isFriend) {
+                                $scope.userFullData.status = 'friend';
+                            } else if (data.hasPendingRequest) {
+                                $scope.userFullData.status = 'pending';
+                            } else {
+                                $scope.userFullData.status = 'invite';
+                            }
+                        }
+
+                        if ($scope.userFullData.isFriend && $location.path() === '/user/' + $routeParams['username'] + '/wall/') {
+                            $scope.loadUserFriendsPreview();
                         }
                     },
                     function error(err) {
-                        notifyService.showError('Failed to load friend\'s wall', err);
+                        notifyService.showError('Failed to load user', err);
                     }
                 )
             }
         };
 
-        $scope.searchUsersByName = function () {
-            if (authService.isLoggedIn() && $scope.searchTerm.trim() !== "") {
-                userService.searchUsersByName($scope.searchTerm,
-                    function success(data) {
-                        $scope.searchResults = data;
-                    },
-                    function error(err) {
-
-                    }
-                )
-            } else {
-                $scope.searchResults = undefined;
-            }
-        };
-
-        $scope.clearSearchResults = function () {
-            $timeout(function () {
-                $scope.searchResults = undefined;
-                $scope.searchTerm = '';
-            }, 200);
-        };
-
-        $scope.getUserPreviewData = function (username) {
+        $scope.loadUserDataPreview = function (username) {
             $scope.previewData = {};
             if (authService.isLoggedIn()) {
                 userService.getUserPreviewData(username,
@@ -114,58 +102,48 @@ app.controller('userController',
             }
         };
 
-        $scope.getFriendsDetailedFriends = function () {
+        $scope.loadUserWall = function () {
+            if (authService.isLoggedIn()) {
+                userService.getUserWall($routeParams['username'], startPostId, PAGE_SIZE,
+                    function success(data) {
+                        $scope.posts = $scope.posts.concat(data);
+                        if ($scope.posts.length > 0) {
+                            startPostId = $scope.posts[$scope.posts.length - 1].id;
+                        }
+                    },
+                    function error(err) {
+                        notifyService.showError('Failed to load user\'s wall', err);
+                    }
+                )
+            }
+        };
+
+        $scope.loadUserFriends = function () {
             if (authService.isLoggedIn()) {
                 userService.getFriendsDetailedFriends($routeParams['username'],
                     function success(data) {
-                        data.userFriendsUrl = '#/friends/';
-                        $scope.friendsList = data;
+                        $scope.friends = data;
                     },
                     function error(err) {
-                        notifyService.showError('Failed to load friends\' friends list', err);
+                        notifyService.showError('Failed to load user\'s friends list', err);
                     }
                 )
             }
         };
 
-        $scope.getFriendsPreviewFriends = function () {
+        $scope.loadUserFriendsPreview = function () {
             if (authService.isLoggedIn()) {
                 userService.getFriendsPreviewFriends($routeParams['username'],
                     function success(data) {
-                        data.userFriendsUrl = '#/friends/';
-                        $scope.friendsListPreview = data;
+                        data.friendsUrl = '#/user/' + $routeParams['username'] + '/friends/';
+                        $scope.friendsPreview = data;
                     },
                     function error(err) {
-                        notifyService.showError('Failed to load friends\' friends preview', err);
+                        notifyService.showError('Failed to load user\'s friends preview', err);
                     }
                 )
             }
         };
 
-        $scope.getUserFullData = function () {
-            if (authService.isLoggedIn) {
-                userService.getUserFullData($routeParams['username'],
-                    function success(data) {
-                        $scope.userFullData = data;
-                        if (authService.getCurrentUser() !== data.username) {
-                            if (data.isFriend) {
-                                $scope.userFullData.status = 'friend';
-                            } else if (data.hasPendingRequest) {
-                                $scope.userFullData.status = 'pending';
-                            } else {
-                                $scope.userFullData.status = 'invite';
-                            }
-                        }
-
-                        if ($scope.userFullData.isFriend && $location.path() === '/user/' + $routeParams['username'] + '/wall/') {
-                            $scope.getFriendsPreviewFriends();
-                        }
-                    },
-                    function error(err) {
-                        notifyService.showError('Failed to load user', err);
-                    }
-                )
-            }
-        }
     }
 );

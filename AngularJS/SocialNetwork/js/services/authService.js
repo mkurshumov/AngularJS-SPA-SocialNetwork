@@ -1,12 +1,12 @@
 'use strict';
 
 app.factory('authService',
-    function ($http, baseServiceUrl) {
+    function ($http, BASE_URL) {
         return {
             login: function(userData, success, error) {
                 var request = {
                     method: 'POST',
-                    url: baseServiceUrl + '/api/users/login',
+                    url: BASE_URL + 'users/login',
                     data: userData
                 };
                 $http(request).success(function(data) {
@@ -21,7 +21,7 @@ app.factory('authService',
             register: function(userData, success, error) {
                 var request = {
                     method: 'POST',
-                    url: baseServiceUrl + '/api/users/register',
+                    url: BASE_URL + 'users/register',
                     data: userData
                 };
                 $http(request).success(function(data) {
@@ -36,7 +36,7 @@ app.factory('authService',
             logout: function(success, error) {
                 var request = {
                     method: 'POST',
-                    url: baseServiceUrl + '/api/users/logout',
+                    url: BASE_URL + 'users/logout',
                     headers: this.getAuthHeaders()
                 };
                 $http(request).success(function() {
@@ -60,7 +60,7 @@ app.factory('authService',
             },
 
             isLoggedIn : function() {
-                return this.getCurrentUser() != undefined;
+                return sessionStorage['currentUser'] !== undefined;
             },
 
             getAuthHeaders : function() {

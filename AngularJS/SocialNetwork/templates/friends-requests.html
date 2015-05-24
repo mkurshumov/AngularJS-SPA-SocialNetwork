@@ -1,0 +1,41 @@
+<main ng-controller="profileController" ng-init="loadFriendRequests()">
+
+    <div>
+
+        <legend>
+            <h2>Friend requests ({{friendRequests.length}} total)</h2>
+        </legend>
+
+        <div>
+            <label for="input1">Search</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="input1" placeholder="Search" ng-model="filterRequests.user.name">
+            </div>
+        </div>
+
+        <div data-example-id="thumbnails-with-custom-content">
+            <div>
+                <div ng-repeat="request in friendRequests">
+                    <div>
+                        <img ng-src="{{request.user.profileImageData}}" err-src="{{defaultProfileImage}}" alt="profile picture" class="big-thumbnail"/>
+                        <div>
+                            <h3>
+                                <a href="#/user/{{request.user.username}}/wall/">
+                                    <span>{{request.user.name}}</span>
+                                </a>
+                            </h3>
+
+                            <p>
+                                <button ng-click="approveFriendRequest(request)" role="button">Approve</button>
+                                <button ng-click="rejectFriendRequest(request)" role="button">Decline</button>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</main>

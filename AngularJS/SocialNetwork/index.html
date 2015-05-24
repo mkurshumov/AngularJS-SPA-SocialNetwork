@@ -1,71 +1,60 @@
 <!DOCTYPE html>
-<html ng-app="app" ng-controller="AppController">
+<html ng-app="app">
 <head lang="en">
     <!-- Load CSS files -->
-    <link rel="stylesheet" href="css/bootstrap.css" />
-    <link rel="stylesheet" href="css/app.css"/>
-    <link rel="stylesheet" href="css/bootstrap-theme.css"/>
+    <!--<link rel="stylesheet" href="css/bootstrap.css">-->
+    <!--<link rel="stylesheet" href="css/bootstrap-theme.css">-->
+    <!--<link rel="stylesheet" href="css/jquery-ui.min.css"/>-->
+    <!--<link rel="stylesheet" href="css/app.css"/>-->
 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Social Network</title>
 </head>
-<body>
+<body ng-controller="appController">
 
-<header id="app-header">
-    <div ng-include="'templates/partial/header.html'"></div>
+<header>
+    <div ng-if="isLoggedIn()" ng-controller="userController" ng-include="'templates/navbar.html'" ></div>
 </header>
-<div id="wrapper">
-    <div id="app-content">
-        <!-- left sidebar-->
 
-        <div class="col-md-8" ng-view></div>
+<main>
+    <div ng-view></div>
+</main>
 
-        <!-- right sidebar-->
-
-    </div>
-</div>
-
-<footer id="app-footer">
+<footer>
     &copy 2015 by Software University Foundation, No Rights Reserved
 </footer>
 
 <!--Load libraries-->
-<script src="lib/angular/angular.js"></script>
-<script src="lib/angular/angular-resource.js"></script>
-<script src="lib/angular/angular-route.js"></script>
-<script src="lib/jquery/jquery-2.1.3.js"></script>
-<script src="lib/jquery.noty/jquery.noty.js"></script>
-<script src="lib/bootstrap/bootstrap-3.1.1.js"></script>
-<script src="lib/ui.bootstrap/ui.bootstrap.pagination-0.12.0.js"></script>
+<script type="text/javascript" src="lib/jquery/jquery-2.1.3.js"></script>
+<script type="text/javascript" src="lib/bootstrap/bootstrap-3.1.1.js"></script>
+<!--<script type="text/javascript" src="lib/jquery-ui.min.js"></script>-->
+<script type="text/javascript" src="lib/angular/angular.js"></script>
+<script type="text/javascript" src="lib/angular/angular-route.js"></script>
+<!--<script type="text/javascript" src="lib/angular/angular-animate.min.js"></script>-->
+<script type="text/javascript" src="lib/angular/angular-resource.js"></script>
+<!--<script type="text/javascript" src="lib/angular/angular-filter.min.js"></script>-->
+<script type="text/javascript" src="lib/jquery.noty/jquery.noty.js"></script>
+<!--<script type="text/javascript" src="lib/ng-infinite-scroll.js"></script>-->
+<script type="text/javascript" src="lib/ui.bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+<script type="text/javascript" src="lib/angular/angular-rt-popup.js"></script>
 
 <!--Load main script-->
-<script src="js/app.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
 
 <!--Load services-->
-<script src="js/services/postService.js"></script>
+<script src="js/services/postsService.js"></script>
 <script src="js/services/authService.js"></script>
 <script src="js/services/notifyService.js"></script>
 <script src="js/services/userService.js"></script>
+<script src="js/services/searchService.js"></script>
 
 <!--Load controllers-->
-<script src="js/controllers/appController.js"></script>
-<script src="js/controllers/homeController.js"></script>
-<!--<script src="js/controllers/RightSidebarController.js"></script>-->
-<!--<script src="js/controllers/LeftSidebarController.js"></script>-->
-<script src="js/controllers/loginController.js"></script>
-<script src="js/controllers/registerController.js"></script>
-<!--<script src="js/controllers/searchController.js"></script>-->
-<!--<script src="js/controllers/UserPublishNewAdController.js"></script>-->
-<!--<script src="js/controllers/UserGetMyAdsController.js"></script>-->
-<!--<script src="js/controllers/EditAdController.js"></script>-->
-<script src="js/controllers/editProfileController.js"></script>
-<script src="js/controllers/changePasswordController.js"></script>
-<!--<script src="js/controllers/AdminAdController.js"></script>-->
-<!--<script src="js/controllers/AdminEditAdController.js"></script>-->
-<!--<script src="js/controllers/AdminListUsersController.js"></script>-->
-<!--<script src="js/controllers/AdminEditProfileController.js"></script>-->
-<!--<script src="js/controllers/AdminListCategoriesController.js"></script>-->
-<!--<script src="js/controllers/AdminListTownsController.js"></script>-->
+<script type="text/javascript" src="js/controllers/appController.js"></script>
+<script type="text/javascript" src="js/controllers/profileController.js"></script>
+<script type="text/javascript" src="js/controllers/commentController.js"></script>
+<script type="text/javascript" src="js/controllers/userController.js"></script>
+<script type="text/javascript" src="js/controllers/postsController.js"></script>
 
 </body>
 </html>

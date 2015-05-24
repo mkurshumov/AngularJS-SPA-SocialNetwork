@@ -1,0 +1,12 @@
+<div ng-if="friendsPreview">
+
+    <div>Friends - <a href="{{friendsPreview.friendsUrl}}">{{friendsPreview.totalCount}} total</a></div>
+
+    <div ng-repeat="friend in friendsPreview.friends">
+        <a href="#/user/{{friend.username}}/wall/">
+            <img ng-src="{{friend.profileImageData}}" err-src="{{defaultProfileImage}}" alt="profile picture" title="{{friend.name}}" class="mid-thumbnail"/>
+            <span>{{friend.name}}</span>
+        </a>
+    </div>
+
+</div>

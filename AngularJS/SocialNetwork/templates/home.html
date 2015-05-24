@@ -1,39 +1,26 @@
-<h1>News Feed</h1>
-
-<pagination total-items="newsFeed.numItems" ng-model="newsFeedParams.startPage"
-            items-per-page="newsFeedParams.pageSize" ng-change="reloadNewsFeed()"
-            max-size="9" boundary-links="true">
-</pagination>
-
-<ul class="newsFeed">
-    <li ng-repeat="post in newsFeed" class="box">
+<main>
+    <!-- Welcome screen -->
+    <div ng-if="!isLoggedIn()" ng-controller="userController">
         <div>
-            <div ng-if='post.author.profileImageData'>
-                <img class="post-user-image" ng-src="{{post.author.profileImageData}}" />
+            <h1>Welcome</h1>
+            <div>
+                <a href="#/login/"><button type="button">Login</button></a>
+                <span>or</span>
+                <a href="#/register/"><button type="button">Register</button></a>
             </div>
-            <span>{{post.author.name}}</span>
-            <span>{{post.date | date:'dd-MMM-yyyy'}}</span>
-            <p>{{post.postContent}}</p>
-            <span>Likes: {{post.likesCount}}</span>
-            <span>Comments: {{post.totalCommentCount}}</span>
         </div>
-        <ul>
-            <li ng-repeat="comment in post.comments">
-                <div>
-                    <div ng-if='comment.author.profileImageData'>
-                        <img class="post-user-image" ng-src="{{comment.author.profileImageData}}" />
-                    </div>
-                    <span>{{comment.author.name}}</span>
-                    <span>{{comment.date | date:'dd-MMM-yyyy'}}</span>
-                    <p>{{comment.commentContent}}</p>
-                    <span>Likes: {{comment.likesCount}}</span>
-                </div>
-            </li>
-        </ul>
-    </li>
-</ul>
+    </div>
 
-<div ng-if="newsFeed.length==0" class="box no-data">
-    No News Feed found.
-</div>
+    <!-- News feed -->
+    <div ng-if="isLoggedIn()" ng-controller="postsController">
+        <fieldset>
+            <legend>NEWS FEED</legend>
+            <div>
+                <div ng-include="'templates/posts.html'"></div>
+            </div>
+        </fieldset>
 
+        <!--<div ng-init="loadOwnFriendsPreview()" ng-include="'templates/friends-preview.html'"></div>-->
+    </div>
+
+</main>

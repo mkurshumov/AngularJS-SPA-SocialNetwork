@@ -1,0 +1,46 @@
+<form ng-controller="userController" ng-submit="register()" name="registerForm">
+    <fieldset>
+
+        <legend>Register</legend>
+        <div>
+            <label for="reg-username">Username</label>
+            <input id="reg-username" type="text" ng-model="registerData.username" required/>
+        </div>
+        <div>
+            <label for="reg-pass">Password</label>
+            <input id="reg-pass" type="password" ng-model="registerData.password" ng-minlength="6" tooltip="Password must be at least 6 symbols" tooltip-trigger="focus" tooltip-placement="top" required/>
+        </div>
+        <div>
+            <label for="confirm-reg-pass">Confirm Password</label>
+            <input id="confirm-reg-pass" type="password" ng-model="registerData.confirmPassword" compare-to="registerData.password" required/>
+        </div>
+        <div>
+            <label for="name">Name</label>
+            <input id="name" type="text" ng-model="registerData.name" required/>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" ng-model="registerData.email" placeholder="example@yahoo.com" required/>
+        </div>
+        <div>
+            <label>Gender</label>
+            <div>
+                <label for="male">Male</label>
+                <input type="radio" ng-model="registerData.gender" id="male" name="gender" value="Male" required/>
+            </div>
+            <div>
+                <label for="female">Female</label>
+                <input type="radio" ng-model="registerData.gender" id="female" name="gender" value="Female" required/>
+            </div>
+            <div>
+                <label for="other">Other</label>
+                <input type="radio" ng-model="registerData.gender" id="other" name="gender" value="Other" required/>
+            </div>
+        </div>
+
+        <button type="submit" ng-disabled="registerForm.$invalid">Register</button>
+        <span>or</span>
+        <a href="#/login">Login</a>
+
+    </fieldset>
+</form>
