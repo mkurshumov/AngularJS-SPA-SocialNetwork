@@ -1,26 +1,23 @@
-<main>
-    <!-- Welcome screen -->
-    <div ng-if="!isLoggedIn()" ng-controller="userController">
+<!-- Welcome screen -->
+<div ng-if="!isLoggedIn()" ng-controller="userController">
+    <div>
+        <h1>Welcome</h1>
         <div>
-            <h1>Welcome</h1>
-            <div>
-                <a href="#/login/"><button type="button">Login</button></a>
-                <span>or</span>
-                <a href="#/register/"><button type="button">Register</button></a>
-            </div>
+            <a href="#/login/"><button type="button">Login</button></a>
+            <span>or</span>
+            <a href="#/register/"><button type="button">Register</button></a>
         </div>
     </div>
+</div>
 
-    <!-- News feed -->
-    <div ng-if="isLoggedIn()" ng-controller="postsController">
-        <fieldset>
-            <legend>NEWS FEED</legend>
-            <div>
-                <div ng-include="'templates/posts.html'"></div>
-            </div>
-        </fieldset>
+<!-- News feed -->
+<div ng-if="isLoggedIn()" ng-controller="postsController">
+    <fieldset>
+        <legend>NEWS FEED</legend>
+        <div>
+            <div ng-include="'templates/posts.html'"></div>
+        </div>
+    </fieldset>
 
-        <!--<div ng-init="loadOwnFriendsPreview()" ng-include="'templates/friends-preview.html'"></div>-->
-    </div>
-
-</main>
+    <!--<div ng-init="loadOwnFriendsPreview()" ng-include="'templates/friends-preview.html'"></div>-->
+</div>

@@ -5,9 +5,9 @@ app.controller('userController',
         var startPostId;
         $scope.posts = [];
 
-        $scope.login = function () {
+        $scope.login = function (loginData) {
             if (!authService.isLoggedIn()) {
-                authService.login($scope.loginData,
+                authService.login(loginData,
                     function success() {
                         notifyService.showInfo('Login successful');
                         $location.path('/');
@@ -19,9 +19,9 @@ app.controller('userController',
             }
         };
 
-        $scope.register = function () {
+        $scope.register = function (registerData) {
             if (!authService.isLoggedIn()) {
-                authService.register($scope.registerData,
+                authService.register(registerData,
                     function success() {
                         notifyService.showInfo('Register successful');
                         $location.path('/');

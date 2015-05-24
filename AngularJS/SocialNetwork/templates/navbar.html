@@ -3,15 +3,15 @@
         <a href="#/">Home</a>
         <a href="#/settings/edit/profile">Edit Profile</a>
         <a href="#/settings/edit/password">Change Password</a>
-        <div ng-controller="profileController">
-            <input type="text" ng-model="searchTerm" ng-change="searchUser(searchTerm)" placeholder="Search" ng-blur="clearSearchResults()"/>
+        <div>
+            <input type="text" ng-model="searchTerm" ng-change="search(searchTerm)" placeholder="Search" ng-focus="showHideResults()" ng-blur="showHideResults()"/>
         </div>
 
-        <div ng-if="searchResults">
+        <div ng-show="showSearchResults">
             <ul>
                 <li ng-repeat="user in searchResults">
                     <img ng-src="{{user.profileImageData}}"/>
-                    <span>{{user.name}}</span>
+                    {{user.name}}
                 </li>
             </ul>
         </div>

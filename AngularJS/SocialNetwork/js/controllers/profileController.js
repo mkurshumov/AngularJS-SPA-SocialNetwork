@@ -16,11 +16,12 @@ app.controller('profileController',
             }
         };
 
-        $scope.editProfile = function () {
+        $scope.editProfile = function (userData) {
             if (authService.isLoggedIn()) {
-                userService.editProfile($scope.userData,
+                userService.editProfile(userData,
                     function success() {
                         notifyService.showInfo('Profile successfully edited');
+                        $location.path('/');
                     },
                     function error(err) {
                         notifyService.showError('Failed to edit profile', err);
@@ -29,9 +30,9 @@ app.controller('profileController',
             }
         };
 
-        $scope.changePassword = function () {
+        $scope.changePassword = function (userData) {
             if (authService.isLoggedIn()) {
-                userService.changePassword($scope.userData,
+                userService.changePassword(userData,
                     function success() {
                         notifyService.showInfo('Password successfully changed');
                         $location.path('/');
@@ -43,9 +44,9 @@ app.controller('profileController',
             }
         };
 
-        $scope.search = function () {
-            if (authService.isLoggedIn() && $scope.searchTerm.trim() !== '') {
-                searchService.searchUser($scope.searchTerm,
+        $scope.search = function (searchTerm) {
+            if (authService.isLoggedIn()) {
+                searchService.searchUser(searchTerm,
                     function success(data) {
                         $scope.searchResults = data;
                     },
@@ -58,10 +59,9 @@ app.controller('profileController',
             }
         };
 
-        $scope.clearSearchResults = function () {
+        $scope.showHideResults = function () {
             $timeout(function () {
-                $scope.searchResults = undefined;
-                $scope.searchTerm = '';
+                $scope.showSearchResults = !$scope.showSearchResults;
             }, 600);
         };
 
@@ -92,60 +92,6 @@ app.controller('profileController',
             }
         };
 
-        $scope.uploadProfileImage = function(event){
-            var file = event.target.files[0],
-                reader;
-
-            if(!file.type.match(/image\/.*/)){
-                $('.profile-picture-preview').attr('src', '');
-                $scope.ownData.profileImageData = undefined;
-                notifyService.showError("Invalid file format.");
-            } else if(file.size > 131072) {
-                $('.profile-picture-preview').attr('src', '');
-                $scope.me.profileImageData = undefined;
-                notifyService.showError("File size limit exceeded.");
-            } else {
-                reader = new FileReader();
-                reader.onload = function() {
-                    $('.profile-picture-preview').attr('src', reader.result);
-                    $('#profile-image').attr('data-picture-data', reader.result);
-                    $scope.me.profileImageData = reader.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        };
-
-        $scope.uploadCoverImage = function(event){
-            var file = event.target.files[0],
-                reader;
-
-            if (!file.type.match(/image\/.*/)){
-                $('.cover-picture-preview').attr('src', '');
-                $scope.ownData.coverImageData = undefined;
-                notifyService.showError("Invalid file format.");
-            } else if (file.size > 131072) {
-                $('.cover-picture-preview').attr('src', '');
-                $scope.ownData.coverImageData = undefined;
-                notifyService.showError("File size limit exceeded.");
-            } else {
-                reader = new FileReader();
-                reader.onload = function() {
-                    $('.cover-picture-preview').attr('src', reader.result);
-                    $('#cover-image').attr('data-picture-data', reader.result);
-                    $scope.ownData.coverImageData = reader.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        };
-
-        $scope.uploadProfileImageClick = function () {
-            angular.element('#profile-image').trigger('click');
-        };
-
-        $scope.uploadCoverImageClick = function () {
-            angular.element('#cover-image').trigger('click');
-        };
-
         $scope.sendFriendRequest = function (previewData) {
             if (authService.isLoggedIn()) {
                 userService.sendFriendRequest(previewData.username,
@@ -171,6 +117,10 @@ app.controller('profileController',
                     }
                 )
             }
+        };
+
+        $scope.clickUpload = function(element){
+            angular.element(element).trigger('click');
         };
 
     }

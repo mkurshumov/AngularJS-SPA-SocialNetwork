@@ -3,10 +3,14 @@
         <legend>Edit Profile</legend>
         <div>
             <img ng-src="{{userData.profileImageData}}"/>
+            <br/>
+            <span>Size limit: 128KB</span>
+            <input type="file"/>
         </div>
-        <span>Size limit: 128KB</span>
         <div>
             <img ng-src="{{userData.coverImageData}}"/>
+            <br/>
+            <input type="file"/>
         </div>
         <div>
             <label for="name">Name:</label>
@@ -25,5 +29,6 @@
 
         <button type="submit" ng-disabled="editProfileForm.$invalid">Edit Profile</button>
         <a href="#/">Cancel</a>
+
     </fieldset>
 </form>
