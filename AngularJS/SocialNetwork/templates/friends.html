@@ -1,38 +1,8 @@
-<main ng-controller="profileController">
-
-    <div ng-controller="userController" ng-init="loadUserWall()">
-        <div ng-if="userFullData.username === username || userFullData.isFriend" ng-init="userFullData.username === username ? loadOwnFriends() : loadUserFriends()">
-
-            <div class="wall-header col-xs-12" ng-include="'templates/user-header.html'">
-            </div>
-
-            <legend>
-                <h2>Friends ({{friends.length}} total)</h2>
-            </legend>
-
-            <div>
-                <label for="input1">Search</label>
-                <div class="col-sm-6">
-                    <input type="text" id="input1" placeholder="Search" ng-model="filterFriends.name">
-                </div>
-            </div>
-
-            <div data-example-id="thumbnails-with-custom-content">
-                <div>
-                    <div ng-repeat="friend in friends">
-                        <div>
-                            <img ng-src="{{friend.profileImageData}}" err-src="{{defaultProfileImage}}" alt="profile picture" class="lil-thumbnail"/>
-                            <div>
-                                <h3>
-                                    <a href="#/user/{{friend.username}}/wall/"><span>{{friend.name}}</span></a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+<div ng-controller="profileController" ng-init="loadOwnFriends()">
+    <div ng-repeat="friend in friendsList">
+        <a href="#/user/{{friend.username}}/wall/">
+            <p>{{friend.name}}</p>
+            <img ng-src="{{friend.profileImageData || 'resources/defaultProfileImage.png'}}" title="{{friend.name}}" class="mid-thumbnail"/>
+        </a>
     </div>
-
-</main>
+</div>

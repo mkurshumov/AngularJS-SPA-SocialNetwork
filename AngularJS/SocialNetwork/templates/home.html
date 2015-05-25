@@ -15,9 +15,11 @@
     <fieldset>
         <legend>NEWS FEED</legend>
         <div>
-            <div ng-include="'templates/posts.html'"></div>
+            <div ng-include="'templates/news-feed.html'"></div>
         </div>
     </fieldset>
 
-    <!--<div ng-init="loadOwnFriendsPreview()" ng-include="'templates/friends-preview.html'"></div>-->
+    <aside ng-controller="profileController" ng-init="loadOwnFriendsPreview()" ng-include="'templates/friends-preview.html'">
+    </aside>
+
 </div>

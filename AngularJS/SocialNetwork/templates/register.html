@@ -1,4 +1,4 @@
-<form ng-controller="userController" ng-submit="register()" name="registerForm">
+<form ng-controller="userController" ng-submit="register(registerData)" name="registerForm">
     <fieldset>
 
         <legend>Register</legend>
@@ -26,15 +26,15 @@
             <label>Gender</label>
             <div>
                 <label for="male">Male</label>
-                <input type="radio" ng-model="registerData.gender" id="male" name="gender" value="Male" required/>
+                <input type="radio" ng-model="registerData.gender" id="male" name="gender" ng-value="1" required/>
             </div>
             <div>
                 <label for="female">Female</label>
-                <input type="radio" ng-model="registerData.gender" id="female" name="gender" value="Female" required/>
+                <input type="radio" ng-model="registerData.gender" id="female" name="gender" ng-value="2" required/>
             </div>
             <div>
                 <label for="other">Other</label>
-                <input type="radio" ng-model="registerData.gender" id="other" name="gender" value="Other" required/>
+                <input type="radio" ng-model="registerData.gender" id="other" name="gender" ng-value="3" required/>
             </div>
         </div>
 

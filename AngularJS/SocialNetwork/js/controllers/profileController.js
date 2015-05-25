@@ -69,7 +69,7 @@ app.controller('profileController',
             if (authService.isLoggedIn()) {
                 userService.getOwnFriends(
                     function success(data) {
-                        $scope.friends = data;
+                        $scope.friendsList = data;
                     },
                     function error(err) {
                         notifyService.showError('Failed to load friends list', err);
@@ -82,7 +82,7 @@ app.controller('profileController',
             if (authService.isLoggedIn()) {
                 userService.getOwnFriendsPreview(
                     function success(data) {
-                        data.friendsUrl = '#/user/' + $scope.username + '/friends/';
+                        data.friendsUrl = '#/friends';
                         $scope.friendsPreview = data;
                     },
                     function error(err) {
@@ -91,6 +91,8 @@ app.controller('profileController',
                 )
             }
         };
+
+        //////////////////////////////////////////////////////////////////
 
         $scope.sendFriendRequest = function (previewData) {
             if (authService.isLoggedIn()) {

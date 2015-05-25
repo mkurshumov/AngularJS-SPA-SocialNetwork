@@ -7,14 +7,19 @@ app.controller('postsController',
         $scope.posts = [];
 
         $scope.loadNewsFeed = function () {
+            if ($scope.busy) return;
+            $scope.busy = true;
+
             if (authService.isLoggedIn()) {
                 postsService.getNewsFeed(PAGE_SIZE, startPostId,
                     function success(data) {
                         $scope.posts = $scope.posts.concat(data);
                         if ($scope.posts.length > 0) {
                             startPostId = $scope.posts[$scope.posts.length - 1].id;
+                            $scope.busy = false;
+                        } else {
+                            $scope.busy = true;
                         }
-                        $scope.isNewsFeed = true;
                     },
                     function error(err) {
                         notifyService.showError('Failed to load News Feed', err);

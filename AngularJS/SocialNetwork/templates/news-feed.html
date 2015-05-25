@@ -1,0 +1,37 @@
+<div ng-controller="postsController" ng-init="loadNewsFeed()" infinite-scroll="loadNewsFeed()" infinite-scroll-disabled='busy' infinite-scroll-distance='0'>
+    <div ng-repeat="post in posts">
+        <!-- post container-->
+        <div>
+            <!-- author profile-->
+            <div>
+                <img ng-src="{{post.author.profileImageData || 'resources/defaultProfileImage.png'}}" class="lil-mid-thumbnail"/>
+            </div>
+            <p>{{post.author.name}}</p>
+            <p>{{post.date | date: "dd MMM yyyy HH:mm:ss"}}</p>
+            <!-- post content-->
+            <div>
+                <p>{{post.postContent}}</p>
+            </div>
+            <!-- post likes and comments-->
+            <div>
+                <span>Post Likes: {{post.likesCount}}</span>
+                <span>Post Comments: {{post.totalCommentsCount}}</span>
+            </div>
+
+            <!-- comment container-->
+            <ul ng-controller="commentController">
+                <li ng-repeat="comment in post.comments">
+                    <img ng-src="{{comment.author.profileImageData || 'resources/defaultProfileImage.png'}}" class="lil-thumbnail"/>
+                    <p>{{comment.author.name}}</p>
+                    <p>{{comment.date | date: "dd MMM yyyy HH:mm:ss"}}</p>
+                    <!-- comment content-->
+                    <div>
+                        <p>{{comment.commentContent}}</p>
+                    </div>
+                    <span>Comment likes: {{comment.likesCount}}</span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>

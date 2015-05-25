@@ -1,15 +1,12 @@
 'use strict';
 
 var app = angular
-    .module('app', ['ngRoute', 'ngResource', 'ui.bootstrap'])
+    .module('app', ['ngRoute', 'infinite-scroll'])
     .constant({
         'BASE_URL': 'http://softuni-social-network.azurewebsites.net/api/',
-        'PAGE_SIZE': 5,
-        'DEFAULT_PROFILE_IMAGE': 'data:image/png;base64',
-        'DEFAULT_COVER_IMAGE': 'data:image/png;base64'
+        'PAGE_SIZE': 4
     })
     .config(function ($routeProvider) {
-
     $routeProvider
         .when('/', {
             templateUrl: 'templates/home.html',
@@ -37,7 +34,7 @@ var app = angular
         })
         .when('/friends/', {
             templateUrl: 'templates/friends.html',
-            controller: 'appController'
+            controller: 'profileController'
         })
         .when('/friends/requests', {
             templateUrl: 'templates/friends-requests.html',

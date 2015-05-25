@@ -10,14 +10,14 @@
         <div ng-show="showSearchResults">
             <ul>
                 <li ng-repeat="user in searchResults">
-                    <img ng-src="{{user.profileImageData}}"/>
+                    <img ng-src="{{user.profileImageData || 'resources/defaultProfileImage.png'}}" class="lil-thumbnail"/>
                     {{user.name}}
                 </li>
             </ul>
         </div>
 
         <div ng-controller="userController">
-            <button ng-click="logout()">Logout</button>
+            <span ng-click="logout()">Logout</span>
         </div>
     </div>
 </nav>

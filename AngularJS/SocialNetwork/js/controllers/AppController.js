@@ -1,15 +1,13 @@
 'use strict';
 
 app.controller('appController',
-    function ($scope, $location, $routeParams, userService, authService, notifyService, postsService, DEFAULT_PROFILE_IMAGE, DEFAULT_COVER_IMAGE) {
+    function ($scope, $location, $routeParams, userService, authService, notifyService) {
 
         $scope.isLoggedIn = function () {
             return authService.isLoggedIn();
         };
 
         $scope.username = authService.getCurrentUser();
-        $scope.defaultProfileImage = DEFAULT_PROFILE_IMAGE;
-        $scope.defaultCoverImage = DEFAULT_COVER_IMAGE;
         $scope.showFriendRequest = false;
         $scope.isOwnNewsFeed = $location.path() === '/';
         $scope.isOwnWall = authService.getCurrentUser() === $routeParams['username'];

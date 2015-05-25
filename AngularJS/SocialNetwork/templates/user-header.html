@@ -1,5 +1,5 @@
 <div ng-if="userFullData">
-    <img ng-src="{{userFullData.profileImageData}}" err-src="{{defaultProfileImage}}" alt="profile picture" class="midbig-thumbnail"/>
+    <img ng-src="{{userFullData.profileImageData || 'resources/defaultProfileImage.png'}}" class="thumbnail"/>
 </div>
 
 <div>

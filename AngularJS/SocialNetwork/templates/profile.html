@@ -1,14 +1,14 @@
-<form ng-if="isLoggedIn()" name="editProfileForm" ng-submit="editProfile(userData)">
+<form ng-if="isLoggedIn()" ng-controller="profileController" name="editProfileForm" ng-submit="editProfile(userData)">
     <fieldset ng-init="getDataAboutMe()">
         <legend>Edit Profile</legend>
         <div>
-            <img ng-src="{{userData.profileImageData}}"/>
+            <img ng-src="{{userData.profileImageData || 'resources/defaultProfileImage.png'}}" class="thumbnail"/>
             <br/>
             <span>Size limit: 128KB</span>
             <input type="file"/>
         </div>
         <div>
-            <img ng-src="{{userData.coverImageData}}"/>
+            <img ng-src="{{userData.coverImageData}}" class="cover"/>
             <br/>
             <input type="file"/>
         </div>
