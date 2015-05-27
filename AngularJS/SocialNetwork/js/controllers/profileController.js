@@ -3,7 +3,7 @@
 app.controller('profileController',
     function ($scope, $location, $timeout, notifyService, userService, authService, searchService) {
 
-        $scope.getDataAboutMe = function () {
+        $scope.loadDataAboutMe = function () {
             if (authService.isLoggedIn()) {
                 userService.getDataAboutMe(
                     function success(data) {
@@ -94,6 +94,58 @@ app.controller('profileController',
 
         //////////////////////////////////////////////////////////////////
 
+        $scope.profileFileSelected = function(fileInputField) {
+            delete $scope.userData.profileImageData;
+            var file = fileInputField.files[0];
+            if (file.type.match(/image\/.*/)) {
+                var reader = new FileReader();
+                reader.onload = function() {
+                    $scope.adData.profileImageData = reader.result;
+                    $(".profile-img-box").html("<img src='" + reader.result + "'>");
+                };
+                reader.readAsDataURL(file);
+            } else {
+                $(".cover-img-box").html("<p>File type not supported!</p>");
+            }
+        };
+
+        $scope.coverFileSelected = function(fileInputField) {
+            delete $scope.userData.coverImageData;
+            var file = fileInputField.files[0];
+            if (file.type.match(/image\/.*/)) {
+                var reader = new FileReader();
+                reader.onload = function() {
+                    $scope.userData.coverImageData = reader.result;
+                    $(".cover-img-box").html("<img src='" + reader.result + "'>");
+                };
+                reader.readAsDataURL(file);
+            } else {
+                $(".cover-img-box").html("<p>File type not supported!</p>");
+            }
+        };
+
+        $scope.changeProfileImage = function() {
+            $scope.userData.changeProfileImage = true;
+        };
+
+        $scope.deleteProfileImage = function() {
+            $scope.userData.changeProfileImage = true;
+            delete $scope.userData.profileImageData;
+        };
+
+        $scope.changeCoverImage = function() {
+            $scope.userData.changeCoverImage = true;
+        };
+
+        $scope.deleteCoverImage = function() {
+            $scope.userData.changeCoverImage = true;
+            delete $scope.userData.coverImageData;
+        };
+
+        ////////////////////////////////////////////////////////////////
+
+
+
         $scope.sendFriendRequest = function (previewData) {
             if (authService.isLoggedIn()) {
                 userService.sendFriendRequest(previewData.username,
@@ -119,10 +171,6 @@ app.controller('profileController',
                     }
                 )
             }
-        };
-
-        $scope.clickUpload = function(element){
-            angular.element(element).trigger('click');
         };
 
     }

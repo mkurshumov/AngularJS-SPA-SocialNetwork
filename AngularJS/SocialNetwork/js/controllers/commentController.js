@@ -3,9 +3,9 @@
 app.controller('commentController',
     function ($scope, authService, postsService, notifyService) {
 
-        $scope.getPostComments = function (post) {
+        $scope.loadComments = function (post) {
             if (authService.isLoggedIn()) {
-                postService.getPostComments(post.id,
+                postsService.getPostComments(post.id,
                     function success(data) {
                         post.comments = data;
                     },
@@ -18,7 +18,7 @@ app.controller('commentController',
 
         $scope.addComment = function (post) {
             if (authService.isLoggedIn()) {
-                postService.addCommentToPost(post.id, $scope.commentData,
+                postsService.addCommentToPost(post.id, $scope.commentData,
                     function success(data) {
                         $scope.commentData.commentContent = '';
                         post.comments.unshift(data);
@@ -34,7 +34,7 @@ app.controller('commentController',
 
         $scope.editComment = function (post, comment) {
             if (authService.isLoggedIn()) {
-                postService.editPostComment(post.id, comment.id, comment.newCommentContent,
+                postsService.editPostComment(post.id, comment.id, comment.newCommentContent,
                     function success() {
                         notifyService.showInfo('Comment successfully edited');
                         comment.commentContent = comment.newCommentContent;
@@ -48,7 +48,7 @@ app.controller('commentController',
 
         $scope.deleteComment = function (post, comment) {
             if (authService.isLoggedIn()) {
-                postService.deletePostComment(post.id, comment.id,
+                postsService.deletePostComment(post.id, comment.id,
                     function success() {
                         var index = post.comments.indexOf(comment);
                         post.comments.splice(index, 1);
@@ -64,7 +64,7 @@ app.controller('commentController',
 
         $scope.likeComment = function (post, comment) {
             if (authService.isLoggedIn()) {
-                postService.likeComment(post.id, comment.id,
+                postsService.likePostComment(post.id, comment.id,
                     function success() {
                         notifyService.showInfo('Comment successfully liked');
                         comment.liked = true;
@@ -79,7 +79,7 @@ app.controller('commentController',
 
         $scope.unlikeComment = function (post, comment) {
             if (authService.isLoggedIn()) {
-                postService.unlikeComment(post.id, comment.id,
+                postsService.unlikePostComment(post.id, comment.id,
                     function success() {
                         notifyService.showInfo('Comment successfully disliked');
                         comment.liked = false;

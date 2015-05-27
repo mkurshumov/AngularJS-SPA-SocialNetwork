@@ -68,10 +68,10 @@ app.factory('userService',
                 $http(request).success(success).error(error);
             },
 
-            getUserWall: function (user, postId, pageSize, success, error) {
+            getUserWall: function (user, pageSize, startPostId, success, error) {
                 var request = {
                     method: 'GET',
-                    url: BASE_URL + 'users/' + user + '/wall?StartPostId=' + postId + '&PageSize=' + pageSize,
+                    url: BASE_URL + 'users/' + user + '/wall?StartPostId=' + (startPostId ? "=" + startPostId : "") + '&PageSize=' + pageSize,
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);

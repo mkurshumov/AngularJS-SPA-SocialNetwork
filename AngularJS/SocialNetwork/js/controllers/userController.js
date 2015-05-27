@@ -7,7 +7,7 @@ app.controller('userController',
 
         $scope.login = function (loginData) {
             if (!authService.isLoggedIn()) {
-                authService.login(loginData,
+                authService.loginRequest(loginData,
                     function success() {
                         notifyService.showInfo('Login successful');
                         $location.path('/');
@@ -21,7 +21,7 @@ app.controller('userController',
 
         $scope.register = function (registerData) {
             if (!authService.isLoggedIn()) {
-                authService.register(registerData,
+                authService.registerRequest(registerData,
                     function success() {
                         notifyService.showInfo('Register successful');
                         $location.path('/');
@@ -35,7 +35,7 @@ app.controller('userController',
 
         $scope.logout = function () {
             if (authService.isLoggedIn()) {
-                authService.logout(
+                authService.logoutRequest(
                     function success() {
                         notifyService.showInfo('Logout successful');
                         $location.path('/');
@@ -104,7 +104,7 @@ app.controller('userController',
 
         $scope.loadUserWall = function () {
             if (authService.isLoggedIn()) {
-                userService.getUserWall($routeParams['username'], startPostId, PAGE_SIZE,
+                userService.getUserWall($routeParams['username'], PAGE_SIZE, startPostId,
                     function success(data) {
                         $scope.posts = $scope.posts.concat(data);
                         if ($scope.posts.length > 0) {

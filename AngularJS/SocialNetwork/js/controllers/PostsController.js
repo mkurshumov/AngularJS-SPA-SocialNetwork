@@ -31,7 +31,7 @@ app.controller('postsController',
         $scope.addPost = function () {
             $scope.postData.username = $routeParams['username'];
             if (authService.isLoggedIn()) {
-                postsService.addNewPost($scope.postData,
+                postsService.addPostRequest($scope.postData,
                     function (data) {
                         $scope.postData.postContent = '';
                         $scope.posts.unshift(data);
@@ -46,7 +46,7 @@ app.controller('postsController',
 
         $scope.editPost = function (post) {
             if (authService.isLoggedIn()) {
-                postsService.editPost(post.id, post.newPostContent,
+                postsService.editPostRequest(post.id, post.newPostContent,
                     function success() {
                         post.postContent = post.newPostContent;
                         notifyService.showInfo('Post successfully removed');
@@ -60,7 +60,7 @@ app.controller('postsController',
 
         $scope.deletePost = function (post) {
             if (authService.isLoggedIn()) {
-                postsService.deletePostById(post.id,
+                postsService.deletePostRequest(post.id,
                     function success() {
                         var index =  $scope.posts.indexOf(post);
                         $scope.posts.splice(index, 1);
@@ -75,7 +75,7 @@ app.controller('postsController',
 
         $scope.likePost = function (post) {
             if (authService.isLoggedIn()) {
-                postsService.likePost(post.id,
+                postsService.likePostRequest(post.id,
                     function success() {
                         post.liked = true;
                         post.likesCount++;
@@ -90,7 +90,7 @@ app.controller('postsController',
 
         $scope.unlikePost = function (post) {
             if (authService.isLoggedIn()) {
-                postsService.unlikePost(post.id,
+                postsService.unlikePostRequest(post.id,
                     function success() {
                         post.liked = false;
                         post.likesCount--;

@@ -1,17 +1,24 @@
 <form ng-if="isLoggedIn()" ng-controller="profileController" name="editProfileForm" ng-submit="editProfile(userData)">
-    <fieldset ng-init="getDataAboutMe()">
+    <fieldset ng-init="loadDataAboutMe()">
         <legend>Edit Profile</legend>
         <div>
-            <img ng-src="{{userData.profileImageData || 'resources/defaultProfileImage.png'}}" class="thumbnail"/>
-            <br/>
-            <span>Size limit: 128KB</span>
-            <input type="file"/>
+            <label for="profile-image">Profile image:</label>
+            <input type="file" id="profile-image" onchange="angular.element(this).scope().profileFileSelected(this)"/>
+            <div class="image-box">
+                <img class="profile-image" ng-src="{{userData.profileImageData}}"/>
+            </div>
         </div>
+        <a ng-click="changeProfileImage()" class="button">Change Profile Image</a>
+        <a ng-click="deleteProfileImage()" class="button">Delete Profile Image</a>
         <div>
-            <img ng-src="{{userData.coverImageData}}" class="cover"/>
-            <br/>
-            <input type="file"/>
+            <label for="cover-image">Cover:</label>
+            <input type="file" id="cover-image" onchange="angular.element(this).scope().coverFileSelected(this)"/>
+            <div class="image-box">
+                <img class="cover-image" ng-src="{{userData.coverImageData}}"/>
+            </div>
         </div>
+        <a ng-click="changeCoverImage()" class="button">Change Cover Image</a>
+        <a ng-click="deleteCoverImage()" class="button">Delete Cover Image</a>
         <div>
             <label for="name">Name:</label>
             <input type="text" id="name" ng-model="userData.name" required/>

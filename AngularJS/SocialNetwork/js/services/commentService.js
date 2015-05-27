@@ -41,7 +41,7 @@ app.factory('commentService',
                 $http(request).success(success).error(error);
             },
 
-            likeComment: function (postId, commentId, success, error) {
+            likePostComment: function (postId, commentId, success, error) {
                 var request = {
                     method: 'POST',
                     url: BASE_URL + 'posts/' + postId + '/comments/' + commentId + '/likes',
@@ -50,7 +50,7 @@ app.factory('commentService',
                 $http(request).success(success).error(error);
             },
 
-            unlikeComment: function (postId, commentId, data, success, error) {
+            unlikePostComment: function (postId, commentId, data, success, error) {
                 var request = {
                     method: 'DELETE',
                     url: BASE_URL + 'posts/' + postId + '/comments/' + commentId + '/likes',

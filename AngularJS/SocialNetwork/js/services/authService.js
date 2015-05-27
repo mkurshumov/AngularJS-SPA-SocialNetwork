@@ -3,7 +3,7 @@
 app.factory('authService',
     function ($http, BASE_URL) {
         return {
-            login: function(userData, success, error) {
+            loginRequest: function(userData, success, error) {
                 var request = {
                     method: 'POST',
                     url: BASE_URL + 'users/login',
@@ -18,7 +18,7 @@ app.factory('authService',
                 }).error(error);
             },
 
-            register: function(userData, success, error) {
+            registerRequest: function(userData, success, error) {
                 var request = {
                     method: 'POST',
                     url: BASE_URL + 'users/register',
@@ -33,7 +33,7 @@ app.factory('authService',
                 }).error(error)
             },
 
-            logout: function(success, error) {
+            logoutRequest: function(success, error) {
                 var request = {
                     method: 'POST',
                     url: BASE_URL + 'users/logout',

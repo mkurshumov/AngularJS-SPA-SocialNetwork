@@ -1,16 +1,25 @@
-<div ng-if="userFullData">
-    <img ng-src="{{userFullData.profileImageData || 'resources/defaultProfileImage.png'}}" class="thumbnail"/>
-</div>
-
-<div>
-    <h2>
-        <a href="#/user/{{userFullData.username}}/wall/">{{userFullData.name}}</a>
-    </h2>
-
+<div ng-if="userFullData" ng-controller="userController" ng-init="loadUserData()">
     <div>
-        <button ng-if="userFullData.status === 'invite'" type="submit" ng-click="sendFriendRequest(userFullData)">Send Friend Request</button>
-        <button ng-if="userFullData.status === 'friend'" disabled>Friend</button>
-        <button ng-if="userFullData.status === 'pending'" disabled>Waiting for Approval</button>
-    </div>
+        <!-- Cover-->
+        <img class="cover" ng-src="{{userFullData.coverImageData}}"/>
+        <!-- Profile-->
+        <img class="thumbnail" ng-src="{{userFullData.profileImageData}}"/>
 
+        <h2>
+            <a href="#/user/{{userFullData.username}}/wall/">{{userFullData.name}}</a>
+        </h2>
+
+        <div>
+            <button ng-if="userFullData.status === 'invite'" type="submit" ng-click="sendFriendRequest(userFullData)">
+                Send Friend Request
+            </button>
+            <button ng-if="userFullData.status === 'friend'" disabled>
+                Friend
+            </button>
+            <button ng-if="userFullData.status === 'pending'" disabled>
+                Waiting for Approval
+            </button>
+        </div>
+
+    </div>
 </div>
