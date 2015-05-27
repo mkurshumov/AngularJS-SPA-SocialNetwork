@@ -6,14 +6,52 @@
             <div>
                 <img ng-src="{{post.author.profileImageData || 'resources/defaultProfileImage.png'}}" class="lil-mid-thumbnail"/>
             </div>
+
+            <!--<span class="author" popup-show="templates/user-preview.html" ng-click="loadUserDataPreview(post.author.username)">-->
+                    <!--{{post.author.name}}-->
+            <!--</span>-->
+
             <p>{{post.author.name}}</p>
             <p>{{post.date | date: "dd MMM yyyy HH:mm:ss"}}</p>
-            <!-- post content-->
+
+            <ul>
+                <li ng-if="post.author.username === username" ng-click="post.editing = true; post.newPostContent = post.postContent">
+                    <a>
+                        edit
+                    </a>
+                </li>
+                <li ng-if="post.author.username === username || isOwnWall">
+                    <a ng-click="deletePost(post)">
+                        delete
+                    </a>
+                </li>
+            </ul>
+
             <div>
-                <p>{{post.postContent}}</p>
+                <span ng-if="!post.editing">
+                    {{post.postContent}}
+                </span>
+                <form ng-show="post.editing" name="editPostForm" ng-submit="editPost(post); post.editing = false">
+                    <input type="text" ng-model="post.newPostContent" ng-minlength="1" required/>
+                    <button type="submit" ng-disabled="editPostForm.$invalid">
+                        Save
+                    </button>
+                    <a ng-click="post.editing = false">
+                        Cancel
+                    </a>
+                </form>
             </div>
+
             <!-- post likes and comments-->
             <div>
+                <span ng-if="isOwnWall || isOwnNewsFeed || post.author.isFriend || post.userFullData.isFriend">
+                <span ng-if="!post.liked" ng-click="likePost(post)">
+                    Like
+                </span>
+                <span ng-if="post.liked" ng-click="unlikePost(post)" >
+                    Unlike
+                </span>
+                </span>
                 <span>Post Likes: {{post.likesCount}}</span>
                 <span>Post Comments: {{post.totalCommentsCount}}</span>
             </div>
@@ -32,7 +70,14 @@
                 </li>
             </ul>
 
+            <span>
+                <div ng-include="'templates/comment.html'"></div>
+            </span>
+
         </div>
+
+        <li ng-if="post.totalCommentsCount > 0" ng-include="'templates/comments.html'"></li>
+
     </div>
 </div>
 
