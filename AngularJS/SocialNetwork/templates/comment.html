@@ -1,9 +1,10 @@
 <form ng-controller="commentController" name="addCommentForm" ng-submit="addComment(post)">
-    <textarea ng-model="commentData.commentContent" cols="40" rows="5" required>
-
+    <textarea ng-model="commentData.commentContent" rows="5" style="resize: none" placeholder="Comment content" required>
     </textarea>
+    <br/>
 
-    <button type="submit" ng-disabled="addCommentForm.$invalid">
+    <button type="submit" class="btn btn-default" ng-disabled="addCommentForm.$invalid">
         Add comment
     </button>
 </form>
+<br/>

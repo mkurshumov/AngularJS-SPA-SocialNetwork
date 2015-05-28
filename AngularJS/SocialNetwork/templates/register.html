@@ -4,43 +4,47 @@
         <legend>Register</legend>
         <div>
             <label for="reg-username">Username</label>
-            <input id="reg-username" type="text" ng-model="registerData.username" required/>
+            <input class="form-control" id="reg-username" type="text" ng-model="registerData.username" required/>
         </div>
         <div>
             <label for="reg-pass">Password</label>
-            <input id="reg-pass" type="password" ng-model="registerData.password" ng-minlength="6" tooltip="Password must be at least 6 symbols" tooltip-trigger="focus" tooltip-placement="top" required/>
+            <input class="form-control" id="reg-pass" type="password" ng-model="registerData.password" ng-minlength="6" tooltip="Password must be at least 6 symbols" tooltip-trigger="focus" tooltip-placement="top" required/>
         </div>
         <div>
             <label for="confirm-reg-pass">Confirm Password</label>
-            <input id="confirm-reg-pass" type="password" ng-model="registerData.confirmPassword" compare-to="registerData.password" required/>
+            <input class="form-control" id="confirm-reg-pass" type="password" ng-model="registerData.confirmPassword" compare-to="registerData.password" required/>
         </div>
         <div>
             <label for="name">Name</label>
-            <input id="name" type="text" ng-model="registerData.name" required/>
+            <input class="form-control" id="name" type="text" ng-model="registerData.name" required/>
         </div>
         <div>
             <label for="email">Email</label>
-            <input id="email" type="email" ng-model="registerData.email" placeholder="example@yahoo.com" required/>
+            <input class="form-control" id="email" type="email" ng-model="registerData.email" placeholder="example@yahoo.com" required/>
         </div>
         <div>
             <label>Gender</label>
-            <div>
+            <br/>
+            <div class="inline">
                 <label for="male">Male</label>
                 <input type="radio" ng-model="registerData.gender" id="male" name="gender" ng-value="1" required/>
             </div>
-            <div>
+            <div class="inline">
                 <label for="female">Female</label>
                 <input type="radio" ng-model="registerData.gender" id="female" name="gender" ng-value="2" required/>
             </div>
-            <div>
+            <div class="inline">
                 <label for="other">Other</label>
                 <input type="radio" ng-model="registerData.gender" id="other" name="gender" ng-value="3" required/>
             </div>
         </div>
+        <br/>
 
-        <button type="submit" ng-disabled="registerForm.$invalid">Register</button>
+        <button type="submit" class="btn btn-default" ng-disabled="registerForm.$invalid">Register</button>
         <span>or</span>
-        <a href="#/login">Login</a>
+        <a href="#/login">
+            <button class="btn btn-default">Login</button>
+        </a>
 
     </fieldset>
 </form>

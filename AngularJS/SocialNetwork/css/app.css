@@ -12,8 +12,8 @@
 }
 
 .lil-thumbnail {
-	width: 35px;
-	height: 35px;
+	width: 54px;
+	height: 54px;
 }
 
 .lil-mid-thumbnail {
@@ -85,4 +85,42 @@ img {
 .wrapper {
 	width: 80%;
 	margin: 0 auto;
+}
+
+.center {
+	text-align: center;
+}
+
+.search {
+	margin-top: 10px;
+}
+
+.controls {
+	font-size: 13px;
+}
+
+textarea {
+	width: 98%;
+}
+
+.inline {
+	display: inline-block;
+}
+
+.nav {
+	border: 1px solid purple;
+	background-color: black;
+}
+
+.outline {
+	color: white;
+	text-shadow:
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000;
+}
+
+a:hover {
+	text-decoration: none;
 }

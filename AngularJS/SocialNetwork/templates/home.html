@@ -3,9 +3,9 @@
     <div>
         <h1>Welcome</h1>
         <div>
-            <a href="#/login/"><button type="button">Login</button></a>
+            <a href="#/login/"><button type="button" class="btn btn-default">Login</button></a>
             <span>or</span>
-            <a href="#/register/"><button type="button">Register</button></a>
+            <a href="#/register/"><button type="button" class="btn btn-default">Register</button></a>
         </div>
     </div>
 </div>
@@ -18,4 +18,11 @@
             <div ng-include="'templates/news-feed.html'"></div>
         </div>
     </fieldset>
+</div>
+
+<!-- Friends preview -->
+<div ng-if="isLoggedIn()" ng-controller="profileController">
+    <div ng-include="'templates/friends-preview.html'">
+
+    </div>
 </div>

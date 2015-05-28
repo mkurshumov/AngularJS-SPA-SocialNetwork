@@ -1,5 +1,9 @@
 <div ng-controller="commentController" ng-show="displayComments" class="comments">
-    <div ng-repeat="comment in post.comments" class="panel panel-default" ng-model="comments">
+
+    <div ng-include="'templates/comment.html'"></div>
+
+    <div ng-repeat="comment in post.comments" class="panel panel-default">
+
         <div class="panel-heading">
             <div class="panel-title">
                 <a href="#/user/{{comment.author.username}}/wall" title="{{comment.author.name}}">
@@ -14,7 +18,7 @@
                         </a>
                     </span>
                     <span class="date comment-date">{{comment.date |date: "dd MMM yyyy HH:mm:ss"}}</span>
-                    <span ng-if="comment.author.username === username">
+                    <span ng-if="comment.author.username === username" class="controls">
                         <a href=""
                            ng-click="comment.editing = true; comment.newCommentContent = comment.commentContent">
                             <span class="glyphicon glyphicon-pencil"></span> Edit
@@ -26,6 +30,7 @@
                 </p>
             </div>
         </div>
+
         <div class="panel-body">
             <span ng-if="!comment.editing">
                 {{comment.commentContent}}
@@ -40,17 +45,13 @@
             </form>
 
             <!-- likes -->
-            <span ng-if="isOwnWall || isOwnNewsFeed || comment.author.isFriend || comment.userFullData.isFriend"
-                  class="right">
+            <span class="right">
                 <a href="" ng-if="!comment.liked" ng-click="likeComment(post, comment)">Like</a>
                 <a href="" ng-if="comment.liked" ng-click="unlikeComment(post, comment)">Unlike</a>
                 <span class="badge">{{comment.likesCount}}</span>
             </span>
 
-            <span ng-if="!comment.author.isFriend && !comment.author.username === username">
-                Likes <span class="badge">{{comment.likesCount}}</span>
-            </span>
-
         </div>
+
     </div>
 </div>

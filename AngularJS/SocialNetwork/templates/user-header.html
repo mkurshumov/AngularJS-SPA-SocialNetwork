@@ -6,20 +6,20 @@
             <!-- Profile-->
             <div style="position: absolute; top: 170px; left: 40px;">
                 <a href="#/user/{{userFullData.username}}/wall/">
-                    <img class="thumbnail inline" ng-src="{{userFullData.profileImageData}}" />
+                    <img class="thumbnail inline" ng-src="{{userFullData.profileImageData || 'resources/defaultProfileImage.png'}}" />
                 </a>
                 <div class="inline">
                     <h2>
-                        <a href="#/user/{{userFullData.username}}/wall/">{{userFullData.name}}</a>
+                        <a href="#/user/{{userFullData.username}}/wall/"><div class="outline">{{userFullData.name}}</div></a>
                     </h2>
                     <div>
-                        <button ng-if="userFullData.status === 'invite'" type="submit" ng-click="sendFriendRequest(userFullData)">
+                        <button class="btn btn-default" ng-if="userFullData.status === 'invite'" type="submit" ng-click="sendFriendRequest(userFullData)">
                             Send Friend Request
                         </button>
-                        <button ng-if="userFullData.status === 'friend'" disabled>
+                        <button class="btn btn-default" ng-if="userFullData.status === 'friend'" disabled>
                             Friend
                         </button>
-                        <button ng-if="userFullData.status === 'pending'" disabled>
+                        <button class="btn btn-default" ng-if="userFullData.status === 'pending'" disabled>
                             Waiting for Approval
                         </button>
                     </div>

@@ -94,52 +94,34 @@ app.controller('profileController',
 
         //////////////////////////////////////////////////////////////////
 
-        $scope.profileFileSelected = function(fileInputField) {
-            delete $scope.userData.profileImageData;
+        $scope.profilePicture = function(fileInputField) {
+
             var file = fileInputField.files[0];
             if (file.type.match(/image\/.*/)) {
                 var reader = new FileReader();
                 reader.onload = function() {
-                    $scope.adData.profileImageData = reader.result;
-                    $(".profile-img-box").html("<img src='" + reader.result + "'>");
+                    $scope.userData.profileImageData = reader.result;
+                    $("#uploadProfileImg").attr('src', reader.result);
                 };
                 reader.readAsDataURL(file);
             } else {
-                $(".cover-img-box").html("<p>File type not supported!</p>");
+                $(".image-box").html("<p>File type not supported!</p>");
             }
         };
 
-        $scope.coverFileSelected = function(fileInputField) {
-            delete $scope.userData.coverImageData;
+        $scope.coverPicture = function(fileInputField) {
+            delete $scope.ownData.coverImageData;
             var file = fileInputField.files[0];
             if (file.type.match(/image\/.*/)) {
                 var reader = new FileReader();
                 reader.onload = function() {
                     $scope.userData.coverImageData = reader.result;
-                    $(".cover-img-box").html("<img src='" + reader.result + "'>");
+                    $("#uploadCoverImg").attr('src', reader.result)
                 };
                 reader.readAsDataURL(file);
             } else {
-                $(".cover-img-box").html("<p>File type not supported!</p>");
+                $(".image-box").html("<p>File type not supported!</p>");
             }
-        };
-
-        $scope.changeProfileImage = function() {
-            $scope.userData.changeProfileImage = true;
-        };
-
-        $scope.deleteProfileImage = function() {
-            $scope.userData.changeProfileImage = true;
-            delete $scope.userData.profileImageData;
-        };
-
-        $scope.changeCoverImage = function() {
-            $scope.userData.changeCoverImage = true;
-        };
-
-        $scope.deleteCoverImage = function() {
-            $scope.userData.changeCoverImage = true;
-            delete $scope.userData.coverImageData;
         };
 
         ////////////////////////////////////////////////////////////////

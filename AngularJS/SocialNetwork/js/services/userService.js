@@ -115,7 +115,7 @@ app.factory('userService',
 
             approveFriendRequest: function (requestId, success, error) {
                 var request = {
-                    method: 'POST',
+                    method: 'PUT',
                     url: BASE_URL + 'me/requests/' + requestId + '?status=approve',
                     headers: authService.getAuthHeaders()
                 };
@@ -124,7 +124,7 @@ app.factory('userService',
 
             rejectFriendRequest: function (requestId, success, error) {
                 var request = {
-                    method: 'POST',
+                    method: 'PUT',
                     url: BASE_URL + 'me/requests/' + requestId + '?status=rejected',
                     headers: authService.getAuthHeaders()
                 };

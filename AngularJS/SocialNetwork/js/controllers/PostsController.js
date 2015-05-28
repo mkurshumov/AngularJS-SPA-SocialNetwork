@@ -37,11 +37,12 @@ app.controller('postsController',
             if (authService.isLoggedIn()) {
                 postsService.addPostRequest($scope.postData,
                     function (data) {
-                        $scope.postData.postContent = '';
+                        $scope.postData.postContent = "";
                         $scope.posts.unshift(data);
                         notifyService.showInfo('Post successfully added');
                     },
                     function error(err) {
+                        $scope.postData.postContent = "";
                         notifyService.showError('Failed to add post', err);
                     }
                 )

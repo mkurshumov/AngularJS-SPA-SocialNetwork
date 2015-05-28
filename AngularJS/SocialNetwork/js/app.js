@@ -21,8 +21,7 @@ var app = angular
             controller: 'userController'
         })
         .when('/user/:username/wall', {
-            templateUrl: 'templates/wall.html',
-            controller: 'appController'
+            templateUrl: 'templates/wall.html'
         })
         .when('/settings/edit/profile', {
             templateUrl: 'templates/profile.html',

@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('appController',
-    function ($scope, $location, $routeParams, userService, authService, notifyService) {
+    function ($scope, $location, $interval, $routeParams, userService, authService, notifyService) {
 
         $scope.isLoggedIn = function () {
             return authService.isLoggedIn();
@@ -25,13 +25,13 @@ app.controller('appController',
             }
         }
 
-        $scope.approveFriendRequest = function (request) {
+        $scope.approveFriend = function (request) {
             if (authService.isLoggedIn()) {
                 userService.approveFriendRequest(request.id,
                     function success() {
                         var index = $scope.friendRequests.indexOf(request);
                         $scope.friendRequests.splice(index, 1);
-                        notifyService.showInfo('Friend request approved');
+                        notifyService.showInfo('Friend request successfully approved');
                     },
                     function error(err) {
                         notifyService.showError('Failed to approve friend request', err);
@@ -40,7 +40,7 @@ app.controller('appController',
             }
         };
 
-        $scope.rejectFriendRequest = function (request) {
+        $scope.rejectFriend = function (request) {
             if (authService.isLoggedIn()) {
                 userService.rejectFriendRequest(request.id,
                     function success() {

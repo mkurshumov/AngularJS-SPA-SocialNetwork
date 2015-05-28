@@ -1,4 +1,4 @@
-<div ng-if="friendsPreview && isLoggedIn()" class="friends-preview">
+<div ng-controller="profileController" ng-if="friendsPreview && isLoggedIn()" ng-init="loadOwnFriendsPreview()" class="friends-preview">
     <div>
         Friends - <a href="{{friendsPreview.friendsUrl}}">{{friendsPreview.totalCount}}</a> total
     </div>

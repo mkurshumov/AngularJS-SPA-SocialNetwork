@@ -4,6 +4,7 @@ app.controller('userController',
     function ($scope, $location, $routeParams, $timeout, userService, authService, notifyService, PAGE_SIZE) {
         var startPostId;
         $scope.posts = [];
+        $scope.menuOpened = false;
 
         $scope.login = function (loginData) {
             if (!authService.isLoggedIn()) {
@@ -79,7 +80,7 @@ app.controller('userController',
                 userService.getUserPreviewData(username,
                     function success(data) {
                         $scope.previewData = {
-                            image: data.profileImageData ? data.profileImageData : $scope.defaultProfileImage,
+                            image: data.profileImageData ? data.profileImageData : 'resources/defaultProfileImage.png',
                             name: data.name,
                             username: data.username,
                             status: false
@@ -144,6 +145,5 @@ app.controller('userController',
                 )
             }
         };
-
     }
 );
