@@ -1,25 +1,33 @@
 <div ng-if="userFullData" ng-controller="userController" ng-init="loadUserData()">
     <div>
         <!-- Cover-->
-        <img class="cover" ng-src="{{userFullData.coverImageData}}"/>
-        <!-- Profile-->
-        <img class="thumbnail" ng-src="{{userFullData.profileImageData}}"/>
+        <div style="position: relative; left: 0; top: 0;">
+            <img class="cover" ng-src="{{userFullData.coverImageData}}" style="position: relative; top: 0; left: 0;"/>
+            <!-- Profile-->
+            <div style="position: absolute; top: 170px; left: 40px;">
+                <a href="#/user/{{userFullData.username}}/wall/">
+                    <img class="thumbnail inline" ng-src="{{userFullData.profileImageData}}" />
+                </a>
+                <div class="inline">
+                    <h2>
+                        <a href="#/user/{{userFullData.username}}/wall/">{{userFullData.name}}</a>
+                    </h2>
+                    <div>
+                        <button ng-if="userFullData.status === 'invite'" type="submit" ng-click="sendFriendRequest(userFullData)">
+                            Send Friend Request
+                        </button>
+                        <button ng-if="userFullData.status === 'friend'" disabled>
+                            Friend
+                        </button>
+                        <button ng-if="userFullData.status === 'pending'" disabled>
+                            Waiting for Approval
+                        </button>
+                    </div>
+                </div>
 
-        <h2>
-            <a href="#/user/{{userFullData.username}}/wall/">{{userFullData.name}}</a>
-        </h2>
-
-        <div>
-            <button ng-if="userFullData.status === 'invite'" type="submit" ng-click="sendFriendRequest(userFullData)">
-                Send Friend Request
-            </button>
-            <button ng-if="userFullData.status === 'friend'" disabled>
-                Friend
-            </button>
-            <button ng-if="userFullData.status === 'pending'" disabled>
-                Waiting for Approval
-            </button>
+            </div>
         </div>
+
 
     </div>
 </div>

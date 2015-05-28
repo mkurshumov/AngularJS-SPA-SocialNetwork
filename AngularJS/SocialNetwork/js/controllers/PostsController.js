@@ -5,6 +5,10 @@ app.controller('postsController',
 
         var startPostId = '';
         $scope.posts = [];
+        $scope.displayComments = false;
+        $scope.showComments = function () {
+            $scope.displayComments = !$scope.displayComments;
+        };
 
         $scope.loadNewsFeed = function () {
             if ($scope.busy) return;
@@ -49,10 +53,10 @@ app.controller('postsController',
                 postsService.editPostRequest(post.id, post.newPostContent,
                     function success() {
                         post.postContent = post.newPostContent;
-                        notifyService.showInfo('Post successfully removed');
+                        notifyService.showInfo('Post successfully edited');
                     },
                     function error(err) {
-                        notifyService.showError('Failed to remove post!', err);
+                        notifyService.showError('Failed to edit post!', err);
                     }
                 )
             }

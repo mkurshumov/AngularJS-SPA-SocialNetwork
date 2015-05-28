@@ -2,10 +2,12 @@
 
     <div ng-controller="profileController" ng-if="userFullData" ng-include="'templates/user-header.html'">
     </div>
+    <br/>
 
-    <div>
+    <div class="wrapper">
         <div ng-if="isOwnWall || userFullData.isFriend" ng-include="'templates/post.html'">
         </div>
+        <br/>
 
         <div ng-if="isLoggedIn() && userFullData" ng-include="'templates/news-feed.html'" infinite-scroll="loadUserWall()" infinite-scroll-disabled='busy' nfinite-scroll-distance="0">
         </div>

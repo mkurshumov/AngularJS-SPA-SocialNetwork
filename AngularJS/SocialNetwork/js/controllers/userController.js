@@ -38,7 +38,7 @@ app.controller('userController',
                 authService.logoutRequest(
                     function success() {
                         notifyService.showInfo('Logout successful');
-                        $location.path('/');
+                        $location.path('#/');
                     },
                     function error(err) {
                         notifyService.showError('Failed to logout', err);

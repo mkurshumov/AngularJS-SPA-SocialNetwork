@@ -1,8 +1,9 @@
-<nav>
+<nav ng-controller="userController">
     <div>
         <a href="#/">Home</a>
         <a href="#/settings/edit/profile">Edit Profile</a>
         <a href="#/settings/edit/password">Change Password</a>
+        <a ng-click="logout()" href="#/">Logout</a>
         <div>
             <input type="text" ng-model="searchTerm" ng-change="search(searchTerm)" placeholder="Search" ng-focus="showHideResults()" ng-blur="showHideResults()"/>
         </div>
@@ -16,8 +17,6 @@
             </ul>
         </div>
 
-        <div ng-controller="userController">
-            <span ng-click="logout()">Logout</span>
-        </div>
+
     </div>
 </nav>

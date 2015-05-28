@@ -50,7 +50,7 @@ app.factory('commentService',
                 $http(request).success(success).error(error);
             },
 
-            unlikePostComment: function (postId, commentId, data, success, error) {
+            unlikePostComment: function (postId, commentId, success, error) {
                 var request = {
                     method: 'DELETE',
                     url: BASE_URL + 'posts/' + postId + '/comments/' + commentId + '/likes',
