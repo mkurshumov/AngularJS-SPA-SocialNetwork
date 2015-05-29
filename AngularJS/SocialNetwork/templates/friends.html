@@ -3,7 +3,7 @@
         <div ng-if="wallOwner.username === username || wallOwner.isFriend" ng-init="wallOwner.username === username ? loadOwnFriends() : loadUserFriends()">
             <fieldset>
                 <legend>
-                    <h2>Friends ({{friends.length}} total)</h2>
+                    <h2>Friends ({{friendsList.length}} total)</h2>
                 </legend>
 
                 <div>
@@ -11,7 +11,7 @@
                 </div>
 
                 <div>
-                    <div ng-repeat="friend in friends">
+                    <div ng-repeat="friend in friendsList | filter: filterFriends">
                         <div>
                             <a href="#/user/{{friend.username}}/wall/">
                             <img ng-src="{{friend.profileImageData || 'resources/defaultProfileImage.png'}}" style="width: 100px; height: 100px"/>

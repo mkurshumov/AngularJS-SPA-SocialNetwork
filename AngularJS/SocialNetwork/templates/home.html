@@ -1,7 +1,7 @@
 <!-- Welcome screen -->
 <div ng-if="!isLoggedIn()" ng-controller="userController">
-    <div>
-        <h1>Welcome</h1>
+    <div class="center">
+        <h1>WELCOME</h1>
         <div>
             <a href="#/login/"><button type="button" class="btn btn-default">Login</button></a>
             <span>or</span>
@@ -9,6 +9,7 @@
         </div>
     </div>
 </div>
+<br/>
 
 <!-- News feed -->
 <div ng-if="isLoggedIn()" ng-controller="profileController">
@@ -17,13 +18,13 @@
             <h2>NEWS FEED</h2>
         </legend>
         <div>
-            <div ng-include="'templates/partial/posts.html'" infinite-scroll='loadNewsFeed()' infinite-scroll-disabled='scrollPause' infinite-scroll-distance="0"></div>
+            <div ng-include="'templates/partial/posts.html'" ng-init='loadNewsFeed()' infinite-scroll-disabled='scrollPause' infinite-scroll-distance="0"></div>
         </div>
     </fieldset>
 </div>
 
 <!-- Friends preview -->
 <div ng-if="isLoggedIn()">
-    <div ng-init="loadOwnFriendsPreview()" ng-include="'templates/partial/friends-preview.html'">
+    <div ng-init="loadOwnFriendsPreview()" ng-include="'templates/partial/friends-preview.html'" >
     </div>
 </div>

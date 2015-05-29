@@ -153,7 +153,7 @@ app.controller('userController',
             if (authService.isLoggedIn()) {
                 userService.getFriendsDetailedFriends($routeParams['username'],
                     function success(data) {
-                        $scope.friends = data;
+                        $scope.friendsList = data;
                     },
                     function error(err) {
                         notifyService.showError('Failed to load user\'s friends list', err);
@@ -167,7 +167,7 @@ app.controller('userController',
                 userService.getFriendsPreviewFriends($routeParams['username'],
                     function success(data) {
                         data.friendsUrl = '#/user/' + $routeParams['username'] + '/friends/';
-                        $scope.friendsPreview = data;
+                        $scope.friendsListPreview = data;
                     },
                     function error(err) {
                         notifyService.showError('Failed to load user\'s friends preview', err);
