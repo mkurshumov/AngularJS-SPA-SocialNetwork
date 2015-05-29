@@ -1,7 +1,10 @@
 'use strict';
 
 app.controller('profileController',
-    function ($scope, $location, $timeout, notifyService, userService, authService, searchService) {
+    function ($scope, $location, $timeout, notifyService, userService, authService, postsService, PAGE_SIZE) {
+        var startPostId;
+        $scope.posts = [];
+        $scope.scrollPause = false;
 
         $scope.loadDataAboutMe = function () {
             if (authService.isLoggedIn()) {
@@ -44,26 +47,31 @@ app.controller('profileController',
             }
         };
 
-        $scope.search = function (searchTerm) {
+        ////////////////////////////////////////////
+
+        $scope.loadNewsFeed = function () {
             if (authService.isLoggedIn()) {
-                searchService.searchUser(searchTerm,
+                if ($scope.scrollPause){
+                    return;
+                }
+                $scope.scrollPause = true;
+                postsService.getNewsFeed(PAGE_SIZE, startPostId,
                     function success(data) {
-                        $scope.searchResults = data;
+                        $scope.posts = $scope.posts.concat(data);
+                        if ($scope.posts.length > 0) {
+                            startPostId = $scope.posts[$scope.posts.length - 1].id;
+                        }
+                        $scope.scrollPause = false;
+                        $scope.isNewsFeed = true;
                     },
                     function error(err) {
-
+                        notifyService.showError('Failed to load News Feed', err);
                     }
                 )
-            } else {
-                $scope.searchResults = undefined;
             }
         };
 
-        $scope.showHideResults = function () {
-            $timeout(function () {
-                $scope.showSearchResults = !$scope.showSearchResults;
-            }, 600);
-        };
+        ////////////////////////////////////////////
 
         $scope.loadOwnFriends = function () {
             if (authService.isLoggedIn()) {
@@ -82,8 +90,8 @@ app.controller('profileController',
             if (authService.isLoggedIn()) {
                 userService.getOwnFriendsPreview(
                     function success(data) {
-                        data.friendsUrl = '#/friends';
-                        $scope.friendsPreview = data;
+                        data.userFriendsUrl = '#/user/' + $scope.username + '/friends/';
+                        $scope.friendsListPreview = data;
                     },
                     function error(err) {
                         notifyService.showError('Failed to load friends preview', err);
@@ -126,8 +134,6 @@ app.controller('profileController',
 
         ////////////////////////////////////////////////////////////////
 
-
-
         $scope.sendFriendRequest = function (previewData) {
             if (authService.isLoggedIn()) {
                 userService.sendFriendRequest(previewData.username,
@@ -142,18 +148,6 @@ app.controller('profileController',
             }
         };
 
-        $scope.loadFriendRequests = function () {
-            if (authService.isLoggedIn()) {
-                userService.getFriendRequests(
-                    function success(data) {
-
-                    },
-                    function error(err) {
-                        notifyService.showError('Failed to load friend requests', err)
-                    }
-                )
-            }
-        };
 
     }
 );

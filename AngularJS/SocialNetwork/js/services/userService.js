@@ -71,7 +71,7 @@ app.factory('userService',
             getUserWall: function (user, pageSize, startPostId, success, error) {
                 var request = {
                     method: 'GET',
-                    url: BASE_URL + 'users/' + user + '/wall?StartPostId=' + (startPostId ? "=" + startPostId : "") + '&PageSize=' + pageSize,
+                    url: BASE_URL + 'users/' + user + '/wall?StartPostId' + (startPostId ? "=" + startPostId : "") + '&PageSize=' + pageSize,
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);
@@ -116,7 +116,7 @@ app.factory('userService',
             approveFriendRequest: function (requestId, success, error) {
                 var request = {
                     method: 'PUT',
-                    url: BASE_URL + 'me/requests/' + requestId + '?status=approve',
+                    url: BASE_URL + 'me/requests/' + requestId + '?status=approved',
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);

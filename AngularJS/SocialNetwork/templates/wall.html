@@ -1,23 +1,23 @@
-<div ng-controller="userController" ng-init="loadUserData()">
+<div ng-controller="userController" ng-init="getWallOwner()">
 
-    <div ng-controller="profileController" ng-if="userFullData" ng-include="'templates/user-header.html'">
+    <div ng-controller="profileController" ng-if="wallOwner" ng-include="'templates/partial/user-header.html'">
     </div>
     <br/>
 
     <div class="wrapper">
-        <div ng-if="isOwnWall || userFullData.isFriend" ng-include="'templates/post.html'">
+        <div ng-if="isOwnWall || wallOwner.isFriend" ng-include="'templates/partial/post.html'">
         </div>
         <br/>
 
-        <div ng-if="isLoggedIn() && userFullData" ng-include="'templates/user-news-feed.html'">
+        <div ng-if="isLoggedIn() && wallOwner" ng-include="'templates/partial/posts.html'" infinite-scroll='loadUserWall()' infinite-scroll-disabled='scrollPause' nfinite-scroll-distance="0">
         </div>
     </div>
 
     <div ng-controller="profileController">
-        <div ng-if="isOwnWall" ng-init="loadOwnFriendsPreview()" ng-include="'templates/friends-preview.html'">
+        <div ng-if="isOwnWall" ng-init="loadOwnFriendsPreview()" ng-include="'templates/partial/friends-preview.html'">
         </div>
 
-        <div ng-if="!isOwnWall && friendsPreview" ng-init="loadUserFriendsPreview()" ng-include="'templates/friends-preview.html'">
+        <div ng-if="!isOwnWall && friendsPreview" ng-init="loadUserFriendsPreview()" ng-include="'templates/partial/friends-preview.html'">
         </div>
     </div>
 

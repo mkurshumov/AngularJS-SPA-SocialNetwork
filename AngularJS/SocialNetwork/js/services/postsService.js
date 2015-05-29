@@ -6,7 +6,7 @@ app.factory('postsService',
             getNewsFeed: function (pageSize, startPostId, success, error) {
                 var request = {
                     method: 'GET',
-                    url: BASE_URL + 'me/feed?StartPostId=' + startPostId + '&PageSize=' + pageSize,
+                    url: BASE_URL + 'me/feed?StartPostId' + (startPostId ? "=" + startPostId : "") + '&PageSize=' + pageSize,
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);
@@ -40,12 +40,13 @@ app.factory('postsService',
                 $http(request).success(success).error(error);
             },
 
-            editPostRequest: function (postId, data, success, error) {
+            editPostRequest: function (postId, postContent, success, error) {
+                var postData = {'postContent': postContent};
                 var request = {
                     method: 'PUT',
                     url: BASE_URL + 'Posts/' + postId,
                     headers: authService.getAuthHeaders(),
-                    data: data
+                    data: postData
                 };
                 $http(request).success(success).error(error);
             },

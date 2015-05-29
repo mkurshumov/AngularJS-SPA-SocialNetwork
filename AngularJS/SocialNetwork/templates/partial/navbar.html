@@ -1,25 +1,31 @@
-<nav ng-controller="userController">
+<nav>
     <div class="nav">
         <ul>
             <li class="inline"><a href="#/">
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span> Home</button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span> Home
+                </button>
             </a></li>
 
             <li ng-mouseenter="showPendingRequest=true" ng-mouseleave="showPendingRequest=false" class="inline">
                 <a href="#/friends/requests/">
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span> Friend Requests</button>
+                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span> Friend
+                        Requests
+                    </button>
                 </a>
                 <ul id="friend-requests-box" ng-if="showPendingRequest && pendingRequests.length > 0">
                     <li ng-repeat="request in pendingRequests" class="list-group-item">
                         <a href="#/user/{{request.user.username}}/wall/" class="media-left">
-                            <img ng-src="{{request.user.profileImageData || 'resources/defaultProfileImage.png'}}" style="width: 50px; height: 50px"/>
+                            <img ng-src="{{request.user.profileImageData || 'resources/defaultProfileImage.png'}}"
+                                 style="width: 50px; height: 50px"/>
                         </a>
+
                         <div class="media-body">
                             <div class="media-body">
                                 <a class="name" href="#/user/{{request.user.username}}/wall/" style="color:black">{{request.user.name}}</a>
                             </div>
                             <div class="media-right action">
-                                <span ng-click="approveFriendRequest(request)" class="media-left btn btn-success btn-sm">Approve</span>
+                                <span ng-click="approveFriendRequest(request)"
+                                      class="media-left btn btn-success btn-sm">Approve</span>
                             </div>
                             <div class="media-right action">
                                 <span ng-click="rejectFriendRequest(request)" class="media-right btn btn-error btn-sm">Reject</span>
@@ -30,7 +36,8 @@
             </li>
 
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                        aria-expanded="false">
                     <span class="glyphicon glyphicon-wrench"></span> Settings
                     <span class="caret"></span>
                 </button>
@@ -42,11 +49,14 @@
             </div>
 
             <li class="inline"><a href="#/">
-                <button type="button" class="btn btn-default" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
+                <button type="button" class="btn btn-default" ng-click="logout()"><span
+                        class="glyphicon glyphicon-log-out"></span> Logout
+                </button>
             </a></li>
 
             <li class="search inline">
-                <input type="text" class="form-control" ng-model="searchTerm" ng-change="search(searchTerm)" placeholder="Search" ng-focus="showHideResults()" ng-blur="showHideResults()"/>
+                <input type="text" class="form-control" ng-model="searchTerm" ng-change="search(searchTerm)"
+                       placeholder="Search" ng-focus="showHideResults()" ng-blur="showHideResults()"/>
             </li>
         </ul>
     </div>
@@ -55,7 +65,8 @@
 <div ng-show="showSearchResults" style="position: relative">
     <div ng-repeat="user in searchResults">
         <a href="#/user/{{user.username}}/wall/">
-            <img ng-src="{{user.profileImageData || 'resources/defaultProfileImage.png'}}" style="width: 50px; height: 50px"/>
+            <img ng-src="{{user.profileImageData || 'resources/defaultProfileImage.png'}}"
+                 style="width: 50px; height: 50px"/>
             <span class="name">{{user.name}}</span>
         </a>
     </div>

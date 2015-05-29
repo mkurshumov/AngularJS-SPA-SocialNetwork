@@ -1,8 +1,27 @@
-<div ng-controller="profileController" ng-init="loadOwnFriends()">
-    <div ng-repeat="friend in friendsList">
-        <a href="#/user/{{friend.username}}/wall/">
-            <p>{{friend.name}}</p>
-            <img ng-src="{{friend.profileImageData || 'resources/defaultProfileImage.png'}}" title="{{friend.name}}" class="mid-thumbnail"/>
-        </a>
+<div ng-controller="profileController">
+    <div ng-controller="userController" ng-init="getWallOwner()">
+        <div ng-if="wallOwner.username === username || wallOwner.isFriend" ng-init="wallOwner.username === username ? loadOwnFriends() : loadUserFriends()">
+            <fieldset>
+                <legend>
+                    <h2>Friends ({{friends.length}} total)</h2>
+                </legend>
+
+                <div>
+                    <input type="text" class="form-control" placeholder="Search friend" ng-model="filterFriends.name"/>
+                </div>
+
+                <div>
+                    <div ng-repeat="friend in friends">
+                        <div>
+                            <a href="#/user/{{friend.username}}/wall/">
+                            <img ng-src="{{friend.profileImageData || 'resources/defaultProfileImage.png'}}" style="width: 100px; height: 100px"/>
+                                <span style="display: block">{{friend.name}}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
     </div>
 </div>

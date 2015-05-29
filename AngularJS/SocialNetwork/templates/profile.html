@@ -1,4 +1,4 @@
-<form ng-if="isLoggedIn()" ng-controller="profileController" name="editProfileForm" ng-submit="editProfile(userData)">
+<form ng-controller="profileController" ng-if="isLoggedIn()" name="editProfileForm" ng-submit="editProfile(userData)">
     <fieldset ng-init="loadDataAboutMe()">
         <legend>Edit Profile</legend>
         <div>

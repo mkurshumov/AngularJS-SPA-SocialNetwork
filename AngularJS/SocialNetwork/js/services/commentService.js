@@ -22,12 +22,13 @@ app.factory('commentService',
                 $http(request).success(success).error(error);
             },
 
-            editPostComment: function (postId, commentId, data, success, error) {
+            editPostComment: function (postId, commentId, commentContent, success, error) {
+                var commentData = {'commentContent': commentContent}
                 var request = {
                     method: 'PUT',
                     url: BASE_URL + 'posts/' + postId + '/comments/' + commentId,
                     headers: authService.getAuthHeaders(),
-                    data: data
+                    data: commentData
                 };
                 $http(request).success(success).error(error);
             },

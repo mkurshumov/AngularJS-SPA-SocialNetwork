@@ -1,10 +1,10 @@
 'use strict';
 
 app.controller('userController',
-    function ($scope, $location, $routeParams, $timeout, userService, authService, notifyService, PAGE_SIZE) {
+    function ($scope, $location, $routeParams, $timeout, userService, authService, searchService, notifyService, PAGE_SIZE) {
         var startPostId;
         $scope.posts = [];
-        $scope.menuOpened = false;
+        $scope.scrollPause = false;
 
         $scope.login = function (loginData) {
             if (!authService.isLoggedIn()) {
@@ -39,7 +39,7 @@ app.controller('userController',
                 authService.logoutRequest(
                     function success() {
                         notifyService.showInfo('Logout successful');
-                        $location.path('#/');
+                        $location.path('/');
                     },
                     function error(err) {
                         notifyService.showError('Failed to logout', err);
@@ -48,33 +48,79 @@ app.controller('userController',
             }
         };
 
-        $scope.loadUserData = function () {
-            if (authService.isLoggedIn) {
-                userService.getUserFullData($routeParams['username'],
+        $scope.loadUserWall = function () {
+            if (authService.isLoggedIn()) {
+                if ($scope.scrollPause) {
+                    return;
+                }
+                $scope.scrollPause = true;
+                userService.getUserWall($routeParams['username'], PAGE_SIZE, startPostId,
                     function success(data) {
-                        $scope.userFullData = data;
-                        if (authService.getCurrentUser() !== data.username) {
-                            if (data.isFriend) {
-                                $scope.userFullData.status = 'friend';
-                            } else if (data.hasPendingRequest) {
-                                $scope.userFullData.status = 'pending';
-                            } else {
-                                $scope.userFullData.status = 'invite';
-                            }
+                        $scope.posts = $scope.posts.concat(data);
+                        if ($scope.posts.length > 0) {
+                            startPostId = $scope.posts[$scope.posts.length - 1].id;
                         }
-
-                        if ($scope.userFullData.isFriend && $location.path() === '/user/' + $routeParams['username'] + '/wall/') {
-                            $scope.loadUserFriendsPreview();
-                        }
+                        $scope.scrollPause = false;
                     },
                     function error(err) {
-                        notifyService.showError('Failed to load user', err);
+                        notifyService.showError('Failed to load user\'s wall', err);
                     }
                 )
             }
         };
 
-        $scope.loadUserDataPreview = function (username) {
+        $scope.search = function (searchTerm) {
+            if (authService.isLoggedIn()) {
+                searchService.searchUser(searchTerm,
+                    function success(data) {
+                        $scope.searchResults = data;
+                    },
+                    function error(err) {
+
+                    }
+                )
+            } else {
+                $scope.searchResults = undefined;
+            }
+        };
+
+        $scope.showHideResults = function () {
+            $timeout(function () {
+                $scope.showSearchResults = !$scope.showSearchResults;
+            }, 600);
+        };
+
+        $scope.getWallOwner = function () {
+            if (authService.isLoggedIn()) {
+                userService.getUserFullData($routeParams['username'],
+                    function success(data) {
+                        $scope.wallOwner = data;
+                        if (authService.getCurrentUser() !== $scope.wallOwner.username) {
+                            if (data.isFriend) {
+                                $scope.wallOwner.status = 'friend';
+                            } else if (data.hasPendingRequest) {
+                                $scope.wallOwner.status = 'pending';
+                            } else {
+                                $scope.wallOwner.status = 'invite';
+                            }
+                        }
+
+                        if ($scope.wallOwner.isFriend && $location.path() === '/user/' + $routeParams['username'] + '/wall/') {
+                            $scope.loadUserFriendsPreview();
+                        }
+
+                        if (!$scope.wallOwner.isFriend && $routeParams['username'] !== $scope.username && $location.path() === '/user/' + $routeParams['username'] + '/friends/') {
+                            $location.path('/');
+                        }
+                    },
+                    function error(err) {
+                        notifyService.showError('Failed to load user data', err)
+                    }
+                );
+            }
+        };
+
+        $scope.loadUserPreview = function (username) {
             $scope.previewData = {};
             if (authService.isLoggedIn()) {
                 userService.getUserPreviewData(username,
@@ -98,22 +144,6 @@ app.controller('userController',
                     },
                     function error(err) {
                         notifyService.showError('Failed to show user preview', err);
-                    }
-                )
-            }
-        };
-
-        $scope.loadUserWall = function () {
-            if (authService.isLoggedIn()) {
-                userService.getUserWall($routeParams['username'], PAGE_SIZE, startPostId,
-                    function success(data) {
-                        $scope.posts = $scope.posts.concat(data);
-                        if ($scope.posts.length > 0) {
-                            startPostId = $scope.posts[$scope.posts.length - 1].id;
-                        }
-                    },
-                    function error(err) {
-                        notifyService.showError('Failed to load user\'s wall', err);
                     }
                 )
             }

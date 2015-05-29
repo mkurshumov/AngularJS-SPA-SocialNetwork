@@ -11,18 +11,19 @@
 </div>
 
 <!-- News feed -->
-<div ng-if="isLoggedIn()" ng-controller="postsController">
+<div ng-if="isLoggedIn()" ng-controller="profileController">
     <fieldset>
-        <legend>NEWS FEED</legend>
+        <legend>
+            <h2>NEWS FEED</h2>
+        </legend>
         <div>
-            <div ng-include="'templates/news-feed.html'"></div>
+            <div ng-include="'templates/partial/posts.html'" infinite-scroll='loadNewsFeed()' infinite-scroll-disabled='scrollPause' infinite-scroll-distance="0"></div>
         </div>
     </fieldset>
 </div>
 
 <!-- Friends preview -->
-<div ng-if="isLoggedIn()" ng-controller="profileController">
-    <div ng-include="'templates/friends-preview.html'">
-
+<div ng-if="isLoggedIn()">
+    <div ng-init="loadOwnFriendsPreview()" ng-include="'templates/partial/friends-preview.html'">
     </div>
 </div>

@@ -1,10 +1,10 @@
-<div ng-controller="profileController" ng-init="loadFriendRequests()">
+<div ng-controller="profileController" ng-init="getFriendRequests()">
 
     <legend>
-        <h2>Friend requests ({{friendRequests.length}} total)</h2>
+        <h2>Friend requests ({{pendingRequests.length}} total)</h2>
     </legend>
 
-    <div ng-repeat="request in friendRequests">
+    <div ng-repeat="request in pendingRequests">
         <div>
             <h3 style="width: 155px">
                 <a href="#/user/{{request.user.username}}/wall/">

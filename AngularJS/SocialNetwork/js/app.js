@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular
-    .module('app', ['ngRoute'])
+    .module('app', ['ngRoute', 'infinite-scroll'])
     .constant({
         'BASE_URL': 'http://softuni-social-network.azurewebsites.net/api/',
         'PAGE_SIZE': 4
@@ -14,30 +14,35 @@ var app = angular
         })
         .when('/login/', {
             templateUrl: 'templates/login.html',
-            controller: 'userController'
+            controller: 'appController'
         })
         .when('/register/', {
             templateUrl: 'templates/register.html',
-            controller: 'userController'
-        })
-        .when('/user/:username/wall', {
-            templateUrl: 'templates/wall.html'
+            controller: 'appController'
         })
         .when('/settings/edit/profile', {
             templateUrl: 'templates/profile.html',
-            controller: 'profileController'
+            controller: 'appController'
         })
         .when('/settings/edit/password', {
             templateUrl: 'templates/change-password.html',
-            controller: 'profileController'
+            controller: 'appController'
         })
-        .when('/friends/', {
+        .when('/user/:username/wall', {
+            templateUrl: 'templates/wall.html',
+            controller: 'appController'
+        })
+        .when('/user/:username/friends/', {
             templateUrl: 'templates/friends.html',
-            controller: 'profileController'
+            controller: 'appController'
         })
         .when('/friends/requests', {
             templateUrl: 'templates/friends-requests.html',
             controller: 'appController'
+        })
+        .when('/404/', {
+            templateUrl: 'templates/not-found.html',
+            controller: 'mainController'
         })
         .otherwise({redirectTo: '/'})
     }

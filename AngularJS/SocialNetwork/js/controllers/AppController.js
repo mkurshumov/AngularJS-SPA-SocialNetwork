@@ -16,7 +16,7 @@ app.controller('appController',
             if (authService.isLoggedIn()) {
                 userService.getFriendRequests(
                     function success(data) {
-                        $scope.friendRequests = data;
+                        $scope.pendingRequests = data;
                     },
                     function error(err) {
                         notifyService.showError('Failed to show friends requests', err);
@@ -29,9 +29,9 @@ app.controller('appController',
             if (authService.isLoggedIn()) {
                 userService.approveFriendRequest(request.id,
                     function success() {
-                        var index = $scope.friendRequests.indexOf(request);
-                        $scope.friendRequests.splice(index, 1);
-                        notifyService.showInfo('Friend request successfully approved');
+                        var index = $scope.pendingRequests.indexOf(request);
+                        $scope.pendingRequests.splice(index, 1);
+                        notifyService.showInfo('Friend request approved');
                     },
                     function error(err) {
                         notifyService.showError('Failed to approve friend request', err);
@@ -44,8 +44,8 @@ app.controller('appController',
             if (authService.isLoggedIn()) {
                 userService.rejectFriendRequest(request.id,
                     function success() {
-                        var index = $scope.friendRequests.indexOf(request);
-                        $scope.friendRequests.splice(index, 1);
+                        var index = $scope.pendingRequests.indexOf(request);
+                        $scope.pendingRequests.splice(index, 1);
                         notifyService.showInfo('Friend request rejected');
                     },
                     function error(err) {
