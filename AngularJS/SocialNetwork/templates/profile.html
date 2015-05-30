@@ -1,4 +1,4 @@
-<form ng-controller="profileController" ng-if="isLoggedIn()" name="editProfileForm" ng-submit="editProfile(userData)">
+<form ng-controller="profileController" ng-if="isLoggedIn()" name="editProfileForm" ng-submit="editProfile(userData)" class="edit-profile">
     <fieldset ng-init="loadDataAboutMe()">
         <legend>Edit Profile</legend>
         <div>
@@ -12,11 +12,11 @@
 
         <div>
             <label for="name">Name:</label>
-            <input type="text" class="form-control" id="name" ng-model="userData.name" required/>
+            <input type="text" class="form-control input1" id="name" ng-model="userData.name" required/>
         </div>
         <div>
             <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" ng-model="userData.email"
+            <input type="email" class="form-control input1" id="email" ng-model="userData.email"
                    placeholder="example@yahoo.com" required/>
         </div>
         <br/>
@@ -29,7 +29,7 @@
         </div>
         <br/>
 
-        <button type="submit" class="btn btn-default" ng-disabled="editProfileForm.$invalid">Edit Profile</button>
+        <button type="submit" class="btn btn-success" ng-disabled="editProfileForm.$invalid">Edit Profile</button>
         <a href="#/">
             <button type="button" class="btn btn-default">Cancel</button>
         </a>

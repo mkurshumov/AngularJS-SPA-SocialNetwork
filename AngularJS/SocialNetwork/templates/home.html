@@ -1,11 +1,11 @@
 <!-- Welcome screen -->
 <div ng-if="!isLoggedIn()" ng-controller="userController">
     <div class="center">
-        <h1>WELCOME</h1>
+        <h1>Choose your destiny</h1>
         <div>
-            <a href="#/login/"><button type="button" class="btn btn-default">Login</button></a>
+            <a href="#/login/"><button type="button" class="btn btn-default button1">Login</button></a>
             <span>or</span>
-            <a href="#/register/"><button type="button" class="btn btn-default">Register</button></a>
+            <a href="#/register/"><button type="button" class="btn btn-default button1">Register</button></a>
         </div>
     </div>
 </div>
@@ -15,16 +15,15 @@
 <div ng-if="isLoggedIn()" ng-controller="profileController">
     <fieldset>
         <legend>
-            <h2>NEWS FEED</h2>
+            <h2 style="text-align: center">NEWS FEED</h2>
         </legend>
-        <div>
-            <div ng-include="'templates/partial/posts.html'" ng-init='loadNewsFeed()' infinite-scroll-disabled='scrollPause' infinite-scroll-distance="0"></div>
+        <div class="form-group col-md-9" style="width: 51%; margin-left: 470px">
+            <div ng-include="'templates/partial/posts.html'" ng-init='loadNewsFeed()' infinite-scroll-disabled='scrollPause' infinite-scroll-distance="0">
+            </div>
+        </div>
+        <div ng-if="isLoggedIn()" ng-controller="profileController">
+            <div ng-init="loadOwnFriendsPreview()" ng-include="'templates/partial/friends-preview.html'" >
+            </div>
         </div>
     </fieldset>
-</div>
-
-<!-- Friends preview -->
-<div ng-if="isLoggedIn()">
-    <div ng-init="loadOwnFriendsPreview()" ng-include="'templates/partial/friends-preview.html'" >
-    </div>
 </div>

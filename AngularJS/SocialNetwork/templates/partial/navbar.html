@@ -6,13 +6,13 @@
                 </button>
             </a></li>
 
-            <li ng-mouseenter="showPendingRequest=true" ng-mouseleave="showPendingRequest=false" class="inline">
+            <li ng-mouseenter="showPendingRequest = true" ng-mouseleave="showPendingRequest = false" class="inline">
                 <a href="#/friends/requests/">
                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span> Friend
-                        Requests
+                        Requests <span ng-if="pendingRequests.length > 0" class="badge"> {{pendingRequests.length}}</span>
                     </button>
                 </a>
-                <ul id="friend-requests-box" ng-if="showPendingRequest && pendingRequests.length > 0">
+                <ul id="friends-requests" ng-if="showPendingRequest && pendingRequests.length > 0">
                     <li ng-repeat="request in pendingRequests" class="list-group-item">
                         <a href="#/user/{{request.user.username}}/wall/" class="media-left">
                             <img ng-src="{{request.user.profileImageData || 'resources/defaultProfileImage.png'}}"
@@ -24,11 +24,11 @@
                                 <a class="name" href="#/user/{{request.user.username}}/wall/" style="color:black">{{request.user.name}}</a>
                             </div>
                             <div class="media-right action">
-                                <span ng-click="approveFriendRequest(request)"
+                                <span ng-click="approveFriend(request)"
                                       class="media-left btn btn-success btn-sm">Approve</span>
                             </div>
                             <div class="media-right action">
-                                <span ng-click="rejectFriendRequest(request)" class="media-right btn btn-error btn-sm">Reject</span>
+                                <span ng-click="rejectFriend(request)" class="media-right btn btn-danger btn-sm">Reject</span>
                             </div>
                         </div>
                     </li>
@@ -62,13 +62,14 @@
     </div>
 </nav>
 <br/>
-<div ng-show="showSearchResults" style="position: relative">
-    <div ng-repeat="user in searchResults">
+<div ng-show="showSearchResults" id="search-queries">
+    <div ng-repeat="user in searchResults" style="text-align: left">
         <a href="#/user/{{user.username}}/wall/">
             <img ng-src="{{user.profileImageData || 'resources/defaultProfileImage.png'}}"
                  style="width: 50px; height: 50px"/>
             <span class="name">{{user.name}}</span>
         </a>
     </div>
+    <div>{{searchResults.length}} total</div>
 </div>
 

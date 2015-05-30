@@ -2,12 +2,8 @@
 	text-align: center;
 }
 
-#app-footer {
-	text-align: center;
-}
-
 #wrapper {
-	width: 45%;
+	width: 90%;
 	margin: 0 auto;
 }
 
@@ -83,12 +79,13 @@ img {
 }
 
 .wrapper {
-	width: 80%;
+	width: 83%;
 	margin: 0 auto;
 }
 
 .center {
 	text-align: center;
+	margin-top: 100px;
 }
 
 .search {
@@ -125,10 +122,40 @@ a:hover {
 	text-decoration: none;
 }
 
-/*.welcome {*/
-	/*width: 1000px;*/
-	/*height: 500px;*/
-	/*border-radius: 150px;*/
-	/*-webkit-border-radius: 150px;*/
-	/*-moz-border-radius: 150px;*/
-/*}*/
+#friends-requests {
+	position: absolute;
+	padding: 0;
+	overflow-y: hidden;
+	z-index: 1000;
+	width: 450px;
+}
+
+#search-queries {
+	position: absolute;
+	padding: 0;
+	overflow-y: hidden;
+	z-index: 1000;
+	width: 300px;
+	margin-left: 56.8%;
+	border: 1px solid black;
+	background-color: white;
+	margin-top: -20px;
+}
+
+.edit-profile {
+	margin: 0 auto;
+	width: 50%;
+}
+
+.input1 {
+	width: 35%;
+}
+
+.button1 {
+	font-size: 20px;
+}
+
+.shrink {
+	width: 20%;
+	margin: 0 auto;
+}
