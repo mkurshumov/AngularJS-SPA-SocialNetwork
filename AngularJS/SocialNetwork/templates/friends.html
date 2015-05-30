@@ -1,17 +1,18 @@
 <div ng-controller="profileController">
     <div ng-controller="userController" ng-init="getWallOwner()">
-        <div ng-if="wallOwner.username === username || wallOwner.isFriend" ng-init="wallOwner.username === username ? loadOwnFriends() : loadUserFriends()">
+        <div ng-if="wallOwner.username === username || wallOwner.isFriend" ng-init="wallOwner.username === username ? loadOwnFriends() : loadUserFriends()" style="width: 50%; margin: 0 auto;">
             <fieldset>
                 <legend>
                     <h2>Friends ({{friendsList.length}} total)</h2>
                 </legend>
 
                 <div>
-                    <input type="text" class="form-control" placeholder="Search friend" ng-model="filterFriends.name"/>
+                    <input type="text" class="form-control input1" placeholder="Search friend" ng-model="filterFriends.name"/>
                 </div>
+                <br/>
 
                 <div>
-                    <div ng-repeat="friend in friendsList | filter: filterFriends">
+                    <div ng-repeat="friend in friendsList | filter: filterFriends"  style="display: inline-block; padding: 10px">
                         <div>
                             <a href="#/user/{{friend.username}}/wall/">
                             <img ng-src="{{friend.profileImageData || 'resources/defaultProfileImage.png'}}" style="width: 100px; height: 100px"/>

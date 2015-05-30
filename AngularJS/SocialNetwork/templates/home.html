@@ -18,7 +18,7 @@
             <h2 style="text-align: center">NEWS FEED</h2>
         </legend>
         <div class="form-group col-md-9" style="width: 51%; margin-left: 470px">
-            <div ng-include="'templates/partial/posts.html'" ng-init='loadNewsFeed()' infinite-scroll-disabled='scrollPause' infinite-scroll-distance="0">
+            <div ng-include="'templates/partial/posts.html'" infinite-scroll='loadNewsFeed()' infinite-scroll-disabled='scrollPause' infinite-scroll-distance="0">
             </div>
         </div>
         <div ng-if="isLoggedIn()" ng-controller="profileController">

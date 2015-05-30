@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular
-    .module('app', ['ngRoute'])
+    .module('app', ['ngRoute', 'infinite-scroll'])
     .constant({
         'BASE_URL': 'http://softuni-social-network.azurewebsites.net/api/',
         'PAGE_SIZE': 4
