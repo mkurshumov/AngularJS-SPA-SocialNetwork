@@ -47,8 +47,6 @@ app.controller('profileController',
             }
         };
 
-        ////////////////////////////////////////////
-
         $scope.loadNewsFeed = function () {
             if (authService.isLoggedIn()) {
                 if ($scope.scrollPause){
@@ -70,8 +68,6 @@ app.controller('profileController',
                 )
             }
         };
-
-        ////////////////////////////////////////////
 
         $scope.loadOwnFriends = function () {
             if (authService.isLoggedIn()) {
@@ -99,8 +95,6 @@ app.controller('profileController',
                 )
             }
         };
-
-        //////////////////////////////////////////////////////////////////
 
         $scope.profilePicture = function(fileInputField) {
 
@@ -132,8 +126,6 @@ app.controller('profileController',
             }
         };
 
-        ////////////////////////////////////////////////////////////////
-
         $scope.sendFriendRequest = function (previewData) {
             if (authService.isLoggedIn()) {
                 userService.sendFriendRequest(previewData.username,
@@ -147,7 +139,5 @@ app.controller('profileController',
                 )
             }
         };
-
-
     }
 );

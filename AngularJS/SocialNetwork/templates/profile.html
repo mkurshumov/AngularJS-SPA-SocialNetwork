@@ -3,10 +3,10 @@
         <legend>Edit Profile</legend>
         <div>
             <input type="file" name="upload" onchange="angular.element(this).scope().profilePicture(this)">
-            <img id="uploadProfileImg" ng-src="{{userData.profileImageData}}" class="thumbnail">
+            <img id="uploadProfileImg" ng-src="{{userData.profileImageData || 'resources/defaultProfileImage.png'}}" class="thumbnail">
             <br/>
             <input type="file" name="upload" onchange="angular.element(this).scope().coverPicture(this)">
-            <img id="uploadCoverImg" ng-src="{{userData.coverImageData}}" class="cover">
+            <img id="uploadCoverImg" ng-src="{{userData.coverImageData || 'resources/no-cover.jpg'}}" class="cover">
         </div>
         <br/>
 

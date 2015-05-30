@@ -2,7 +2,7 @@
     <div>
         <!-- Cover-->
         <div style="position: relative; left: 0; top: 0; margin-left: 455px;">
-            <img class="cover" ng-src="{{wallOwner.coverImageData}}" style="position: relative; top: 0; left: 0;"/>
+            <img class="cover" ng-src="{{wallOwner.coverImageData || 'resources/no-cover.jpg'}}" style="position: relative; top: 0; left: 0;"/>
             <!-- Profile-->
             <div style="position: absolute; top: 170px; left: 40px;">
                 <a href="#/user/{{wallOwner.username}}/wall/">

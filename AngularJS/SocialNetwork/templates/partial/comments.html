@@ -15,7 +15,6 @@
                         <a href="#/user/{{comment.author.username}}/wall">
                             {{comment.author.name}}
                         </a>
-                        </a>
                     </span>
                     <span class="date comment-date">{{comment.date |date: "dd MMM yyyy HH:mm:ss"}}</span>
                     <span ng-if="comment.author.username === username" class="controls">

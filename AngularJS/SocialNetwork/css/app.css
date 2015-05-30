@@ -1,161 +1,192 @@
+body {
+    background-color: #e8e9ec;
+}
+
 #app-header {
-	text-align: center;
+    text-align: center;
+    height: 50px;
 }
 
 #wrapper {
-	width: 90%;
-	margin: 0 auto;
+    width: 90%;
+    margin: 0 auto;
 }
 
 .lil-thumbnail {
-	width: 54px;
-	height: 54px;
+    width: 54px;
+    height: 54px;
+    border-radius: 200px 200px 200px 200px;
+    -moz-border-radius: 200px 200px 200px 200px;
+    -webkit-border-radius: 200px 200px 200px 200px;
 }
 
 .lil-mid-thumbnail {
-	width: 75px;
-	height: 75px;
+    width: 75px;
+    height: 75px;
+    border-radius: 200px 200px 200px 200px;
+    -moz-border-radius: 200px 200px 200px 200px;
+    -webkit-border-radius: 200px 200px 200px 200px;
 }
 
 .mid-thumbnail {
-	width: 100px;
-	height: 100px;
+    width: 100px;
+    height: 100px;
+    border-radius: 200px 200px 200px 200px;
+    -moz-border-radius: 200px 200px 200px 200px;
+    -webkit-border-radius: 200px 200px 200px 200px;
 }
 
 .thumbnail {
-	width: 150px;
-	height: 150px;
+    width: 150px;
+    height: 150px;
 }
 
 .big-thumbnail {
-	width: 175px;
-	height: 175px;
+    width: 175px;
+    height: 175px;
+    border-radius: 200px 200px 200px 200px;
+    -moz-border-radius: 200px 200px 200px 200px;
+    -webkit-border-radius: 200px 200px 200px 200px;
 }
 
 .cover {
-	width: 850px;
-	height: 350px;
+    width: 850px;
+    height: 350px;
+    border: 1px solid black;
 }
 
 .friends-preview {
-	text-align: right;
+    text-align: right;
 }
 
 .info {
-	display: inline-block;
+    display: inline-block;
 }
 
 .author, .date {
-	display: block;
+    display: block;
 }
 
 .glyphicon-remove {
-	color: red;
+    color: red;
 }
 
 .glyphicon-pencil {
-	color: black;
+    color: black;
 }
 
 img {
-	vertical-align: top;
+    vertical-align: top;
 }
 
 .right {
-	float: right;
+    float: right;
 }
 
 .comments {
-	float: right;
-	width: 70%;
+    float: right;
+    width: 70%;
 }
 
 .comment-date, .comment-author {
-	font-size: 80%;
+    font-size: 80%;
 }
 
 .inline {
-	display: inline-block;
+    display: inline-block;
 }
 
 .wrapper {
-	width: 83%;
-	margin: 0 auto;
+    width: 83%;
+    margin: 0 auto;
 }
 
 .center {
-	text-align: center;
-	margin-top: 100px;
+    text-align: center;
+    margin-top: 100px;
 }
 
 .search {
-	margin-top: 10px;
+    margin-top: 10px;
 }
 
 .controls {
-	font-size: 13px;
+    font-size: 13px;
 }
 
 textarea {
-	width: 98%;
+    width: 98%;
 }
 
 .inline {
-	display: inline-block;
+    display: inline-block;
 }
 
 .nav {
-	border: 1px solid purple;
-	background-color: black;
+    background: rgba(54,19,58,1);
+    background: -moz-linear-gradient(top, rgba(54,19,58,1) 0%, rgba(52,18,54,1) 50%, rgba(45,0,46,1) 51%, rgba(61,11,60,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(54,19,58,1) 0%, rgba(52,18,54,1) 50%, rgba(45,0,46,1) 51%, rgba(61,11,60,1) 100%);
+    background: -o-linear-gradient(top, rgba(54,19,58,1) 0%, rgba(52,18,54,1) 50%, rgba(45,0,46,1) 51%, rgba(61,11,60,1) 100%);
+    background: -ms-linear-gradient(top, rgba(54,19,58,1) 0%, rgba(52,18,54,1) 50%, rgba(45,0,46,1) 51%, rgba(61,11,60,1) 100%);
+    background: linear-gradient(to bottom, rgba(54,19,58,1) 0%, rgba(52,18,54,1) 50%, rgba(45,0,46,1) 51%, rgba(61,11,60,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#36133a', endColorstr='#3d0b3c', GradientType=0 );
+    border-radius: 0px 0px 10px 10px;
+    -moz-border-radius: 0px 0px 10px 10px;
+    -webkit-border-radius: 0px 0px 10px 10px;
+
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
 }
 
 .outline {
-	color: white;
-	text-shadow:
-	-1px -1px 0 #000,
-	1px -1px 0 #000,
-	-1px 1px 0 #000,
-	1px 1px 0 #000;
+    color: white;
+    text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 a:hover {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 #friends-requests {
-	position: absolute;
-	padding: 0;
-	overflow-y: hidden;
-	z-index: 1000;
-	width: 450px;
+    position: absolute;
+    padding: 0;
+    overflow-y: hidden;
+    z-index: 1000;
+    width: 450px;
+    margin-top: 10px;
 }
 
 #search-queries {
-	position: absolute;
-	padding: 0;
-	overflow-y: hidden;
-	z-index: 1000;
-	width: 300px;
-	margin-left: 56.8%;
-	border: 1px solid black;
-	background-color: white;
-	margin-top: -20px;
+    position: fixed;
+    padding: 0;
+    overflow-y: hidden;
+    z-index: 1000;
+    width: 300px;
+    margin-left: 57.5%;
+    border: 1px solid black;
+    background-color: white;
+    margin-top: 30px;
 }
 
 .edit-profile {
-	margin: 0 auto;
-	width: 50%;
+    margin: 0 auto;
+    width: 50%;
 }
 
 .input1 {
-	width: 35%;
+    width: 35%;
 }
 
 .button1 {
-	font-size: 20px;
+    font-size: 20px;
 }
 
 .shrink {
-	width: 20%;
-	margin: 0 auto;
+    width: 20%;
+    margin: 0 auto;
 }
+

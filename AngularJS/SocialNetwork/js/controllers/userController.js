@@ -166,7 +166,7 @@ app.controller('userController',
             if (authService.isLoggedIn()) {
                 userService.getFriendsPreviewFriends($routeParams['username'],
                     function success(data) {
-                        data.friendsUrl = '#/user/' + $routeParams['username'] + '/friends/';
+                        data.userFriendsUrl = '#/user/' + $routeParams['username'] + '/friends/';
                         $scope.friendsListPreview = data;
                     },
                     function error(err) {

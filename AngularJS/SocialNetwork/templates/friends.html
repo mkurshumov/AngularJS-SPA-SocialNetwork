@@ -1,6 +1,7 @@
 <div ng-controller="profileController">
     <div ng-controller="userController" ng-init="getWallOwner()">
         <div ng-if="wallOwner.username === username || wallOwner.isFriend" ng-init="wallOwner.username === username ? loadOwnFriends() : loadUserFriends()" style="width: 50%; margin: 0 auto;">
+            <br/>
             <fieldset>
                 <legend>
                     <h2>Friends ({{friendsList.length}} total)</h2>
