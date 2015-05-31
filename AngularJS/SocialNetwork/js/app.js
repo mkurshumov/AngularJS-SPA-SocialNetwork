@@ -40,10 +40,6 @@ var app = angular
             templateUrl: 'templates/friends-requests.html',
             controller: 'appController'
         })
-        .when('/404/', {
-            templateUrl: 'templates/not-found.html',
-            controller: 'mainController'
-        })
         .otherwise({redirectTo: '/'})
     }
 );

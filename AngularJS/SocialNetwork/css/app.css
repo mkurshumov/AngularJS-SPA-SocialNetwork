@@ -157,19 +157,17 @@ a:hover {
     overflow-y: hidden;
     z-index: 1000;
     width: 450px;
-    margin-top: 10px;
 }
 
 #search-queries {
-    position: fixed;
-    padding: 0;
-    overflow-y: hidden;
-    z-index: 1000;
-    width: 300px;
-    margin-left: 57.5%;
-    border: 1px solid black;
-    background-color: white;
-    margin-top: 30px;
+    position: fixed; !important;
+    padding: 0; !important;
+    overflow-y: hidden; !important;
+    z-index: 1000; !important;
+    width: 300px; !important;
+    margin-left: 59.8%; !important;
+    background-color: white; !important;
+    margin-top: 30px; !important;
 }
 
 .edit-profile {
@@ -188,5 +186,17 @@ a:hover {
 .shrink {
     width: 20%;
     margin: 0 auto;
+}
+
+.blue:hover {
+    background-color: #3D0B3C;
+}
+
+.name {
+    color: white;
+    text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 

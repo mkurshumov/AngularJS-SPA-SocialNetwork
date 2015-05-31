@@ -1,8 +1,12 @@
 <nav>
     <div class="nav">
         <ul>
+            <li class="inline"><a href="#/user/{{username}}/wall">
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span> My wall
+                </button>
+            </a></li>
             <li class="inline"><a href="#/">
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span> Home
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-globe"></span> News Feed
                 </button>
             </a></li>
 
@@ -13,24 +17,27 @@
                     </button>
                 </a>
                 <ul id="friends-requests" ng-if="showPendingRequest && pendingRequests.length > 0">
-                    <li ng-repeat="request in pendingRequests" class="list-group-item">
+                    <li ng-repeat="request in pendingRequests" class="list-group-item blue">
                         <a href="#/user/{{request.user.username}}/wall/" class="media-left">
+                            <div>
                             <img ng-src="{{request.user.profileImageData || 'resources/defaultProfileImage.png'}}"
-                                 style="width: 50px; height: 50px"/>
-                        </a>
-
-                        <div class="media-body">
-                            <div class="media-body">
-                                <a class="name" href="#/user/{{request.user.username}}/wall/" style="color:black">{{request.user.name}}</a>
-                            </div>
-                            <div class="media-right action">
+                                 style="width: 50px; height: 50px" class="pull-left"/>
+                                <div class="media-body">
+                                    <div class="media-body name">
+                                        {{request.user.name}}
+                                    </div>
+                                    <div class="media-right action">
                                 <span ng-click="approveFriend(request)"
                                       class="media-left btn btn-success btn-sm">Approve</span>
+                                    </div>
+                                    <div class="media-right action">
+                                        <span ng-click="rejectFriend(request)" class="media-right btn btn-danger btn-sm">Reject</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="media-right action">
-                                <span ng-click="rejectFriend(request)" class="media-right btn btn-danger btn-sm">Reject</span>
-                            </div>
-                        </div>
+                        </a>
+
+
                     </li>
                 </ul>
             </li>
@@ -62,12 +69,14 @@
     </div>
 </nav>
 <br/>
-<div ng-show="showSearchResults" id="search-queries">
+<div ng-show="showSearchResults" id="search-queries" class="panel panel-body">
     <div ng-repeat="user in searchResults" style="text-align: left">
         <a href="#/user/{{user.username}}/wall/">
-            <img ng-src="{{user.profileImageData || 'resources/defaultProfileImage.png'}}"
-                 style="width: 50px; height: 50px"/>
-            <span class="name">{{user.name}}</span>
+            <div class="blue">
+                <img ng-src="{{user.profileImageData || 'resources/defaultProfileImage.png'}}"
+                     style="width: 50px; height: 50px"/>
+                <span class="name">{{user.name}}</span>
+            </div>
         </a>
     </div>
     <div>{{searchResults.length}} total</div>

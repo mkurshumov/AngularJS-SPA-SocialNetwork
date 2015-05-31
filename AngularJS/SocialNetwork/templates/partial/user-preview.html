@@ -1,7 +1,7 @@
 <div ng-if="previewData" ng-cloak class="media" ng-controller="profileController">
 
     <div>
-        <img ng-src="{{previewData.image}}" class="midbig-thumbnail"/>
+        <img ng-src="{{previewData.image || 'resources/defaultProfileImage.png'}}" class="midbig-thumbnail"/>
     </div>
 
     <div>
@@ -13,5 +13,6 @@
         <button ng-if="previewData.status === 'friend'" disabled>Friend</button>
         <button ng-if="previewData.status === 'pending'" disabled>Waiting for Approval</button>
     </div>
+    <span ng-click="hideUserPreview();hidePopover();">preview</span>
 
 </div>

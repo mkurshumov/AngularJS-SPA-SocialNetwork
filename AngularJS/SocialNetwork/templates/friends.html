@@ -16,8 +16,8 @@
                     <div ng-repeat="friend in friendsList | filter: filterFriends"  style="display: inline-block; padding: 10px">
                         <div>
                             <a href="#/user/{{friend.username}}/wall/">
-                            <img ng-src="{{friend.profileImageData || 'resources/defaultProfileImage.png'}}" style="width: 100px; height: 100px"/>
-                                <span style="display: block">{{friend.name}}</span>
+                            <img ng-src="{{friend.profileImageData || 'resources/defaultProfileImage.png'}}" style="width: 100px; height: 100px;"/>
+                                <span style="display: block; text-align: center">{{friend.name}}</span>
                             </a>
                         </div>
                     </div>

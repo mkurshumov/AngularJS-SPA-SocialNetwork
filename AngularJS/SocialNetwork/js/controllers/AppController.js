@@ -12,6 +12,10 @@ app.controller('appController',
         $scope.isOwnNewsFeed = $location.path() === '/';
         $scope.isOwnWall = authService.getCurrentUser() === $routeParams['username'];
 
+        //$scope.dynamicPopover = {
+        //    templateUrl: 'templates/user-preview.html'
+        //};
+
         function getFriendRequests() {
             if (authService.isLoggedIn()) {
                 userService.getFriendRequests(
