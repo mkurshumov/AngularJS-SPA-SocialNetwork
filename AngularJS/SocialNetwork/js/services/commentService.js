@@ -58,26 +58,7 @@ app.factory('commentService',
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);
-        },
-
-            getCommentDetailedLikes: function (postId, commentId, data, success, error) {
-                var request = {
-                    method: 'GET',
-                    url: BASE_URL + 'posts/' + postId + '/comments/' + commentId + '/likes',
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            getCommentPreviewLikes: function (postId, commentId, data, success, error) {
-                var request = {
-                    method: 'GET',
-                    url: BASE_URL + 'posts/' + postId + '/comments/' + commentId + '/likes/preview',
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
             }
-
-        }
+        };
     }
 );

@@ -1,5 +1,4 @@
 <div class="comments">
-<!--ng-show="displayComments"-->
     <div ng-include="'templates/partial/comment.html'"></div>
 
     <div ng-repeat="comment in post.comments" class="panel panel-default">
@@ -7,7 +6,8 @@
         <div class="panel-heading">
             <div class="panel-title">
                 <a href="#/user/{{comment.author.username}}/wall" title="{{comment.author.name}}">
-                    <img ng-src="{{comment.author.profileImageData || 'resources/defaultProfileImage.png'}}" class="lil-thumbnail"/>
+                    <img ng-src="{{comment.author.profileImageData || 'resources/defaultProfileImage.png'}}"
+                         class="lil-thumbnail"/>
                 </a>
 
                 <p class="info">
@@ -18,7 +18,8 @@
                     </span>
                     <span class="date comment-date">{{comment.date |date: "dd MMM yyyy HH:mm:ss"}}</span>
                     <span ng-if="comment.author.username === username" class="controls">
-                        <a href="" ng-click="comment.editing = true; comment.newCommentContent = comment.commentContent">
+                        <a href=""
+                           ng-click="comment.editing = true; comment.newCommentContent = comment.commentContent">
                             <span class="glyphicon glyphicon-pencil"></span> Edit
                         </a>
                         <a href="" ng-click="deleteComment(post, comment)">
@@ -44,9 +45,12 @@
             </form>
 
             <!-- likes -->
-            <span ng-if="isOwnWall || isOwnNewsFeed || post.author.isFriend || post.userFullData.isFriend" class="right">
-                <a href="" ng-if="!comment.liked" ng-click="likeComment(post, comment)"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
-                <a href="" ng-if="comment.liked" ng-click="unlikeComment(post, comment)"><span class="glyphicon glyphicon-thumbs-down"></span> Unlike</a>
+            <span ng-if="isOwnWall || isOwnNewsFeed || post.author.isFriend || post.userFullData.isFriend"
+                  class="right">
+                <a href="" ng-if="!comment.liked" ng-click="likeComment(post, comment)"><span
+                        class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+                <a href="" ng-if="comment.liked" ng-click="unlikeComment(post, comment)"><span
+                        class="glyphicon glyphicon-thumbs-down"></span> Unlike</a>
                 <span class="badge">{{comment.likesCount}}</span>
             </span>
 

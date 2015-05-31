@@ -91,6 +91,5 @@ app.controller('commentController',
                 )
             }
         };
-
     }
 );

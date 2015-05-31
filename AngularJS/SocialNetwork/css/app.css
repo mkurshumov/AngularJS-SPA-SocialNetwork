@@ -123,13 +123,13 @@ textarea {
 }
 
 .nav {
-    background: rgba(54,19,58,1);
-    background: -moz-linear-gradient(top, rgba(54,19,58,1) 0%, rgba(52,18,54,1) 50%, rgba(45,0,46,1) 51%, rgba(61,11,60,1) 100%);
-    background: -webkit-linear-gradient(top, rgba(54,19,58,1) 0%, rgba(52,18,54,1) 50%, rgba(45,0,46,1) 51%, rgba(61,11,60,1) 100%);
-    background: -o-linear-gradient(top, rgba(54,19,58,1) 0%, rgba(52,18,54,1) 50%, rgba(45,0,46,1) 51%, rgba(61,11,60,1) 100%);
-    background: -ms-linear-gradient(top, rgba(54,19,58,1) 0%, rgba(52,18,54,1) 50%, rgba(45,0,46,1) 51%, rgba(61,11,60,1) 100%);
-    background: linear-gradient(to bottom, rgba(54,19,58,1) 0%, rgba(52,18,54,1) 50%, rgba(45,0,46,1) 51%, rgba(61,11,60,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#36133a', endColorstr='#3d0b3c', GradientType=0 );
+    background: rgba(54, 19, 58, 1);
+    background: -moz-linear-gradient(top, rgba(54, 19, 58, 1) 0%, rgba(52, 18, 54, 1) 50%, rgba(45, 0, 46, 1) 51%, rgba(61, 11, 60, 1) 100%);
+    background: -webkit-linear-gradient(top, rgba(54, 19, 58, 1) 0%, rgba(52, 18, 54, 1) 50%, rgba(45, 0, 46, 1) 51%, rgba(61, 11, 60, 1) 100%);
+    background: -o-linear-gradient(top, rgba(54, 19, 58, 1) 0%, rgba(52, 18, 54, 1) 50%, rgba(45, 0, 46, 1) 51%, rgba(61, 11, 60, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(54, 19, 58, 1) 0%, rgba(52, 18, 54, 1) 50%, rgba(45, 0, 46, 1) 51%, rgba(61, 11, 60, 1) 100%);
+    background: linear-gradient(to bottom, rgba(54, 19, 58, 1) 0%, rgba(52, 18, 54, 1) 50%, rgba(45, 0, 46, 1) 51%, rgba(61, 11, 60, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#36133a', endColorstr='#3d0b3c', GradientType=0);
     border-radius: 0px 0px 10px 10px;
     -moz-border-radius: 0px 0px 10px 10px;
     -webkit-border-radius: 0px 0px 10px 10px;
@@ -160,14 +160,22 @@ a:hover {
 }
 
 #search-queries {
-    position: fixed; !important;
-    padding: 0; !important;
-    overflow-y: hidden; !important;
-    z-index: 1000; !important;
-    width: 300px; !important;
-    margin-left: 59.8%; !important;
-    background-color: white; !important;
-    margin-top: 30px; !important;
+    position: fixed;
+!important;
+    padding: 0;
+!important;
+    overflow-y: hidden;
+!important;
+    z-index: 1000;
+!important;
+    width: 300px;
+!important;
+    margin-left: 59.8%;
+!important;
+    background-color: white;
+!important;
+    margin-top: 30px;
+!important;
 }
 
 .edit-profile {
@@ -199,4 +207,3 @@ a:hover {
     -1px 1px 0 #000,
     1px 1px 0 #000;
 }
-

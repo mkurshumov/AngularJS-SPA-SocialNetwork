@@ -2,18 +2,24 @@
     <div>
         <!-- Cover-->
         <div style="position: relative; left: 0; top: 0; margin-left: 455px;">
-            <img class="cover" ng-src="{{wallOwner.coverImageData || 'resources/no-cover.jpg'}}" style="position: relative; top: 0; left: 0;"/>
+            <img class="cover" ng-src="{{wallOwner.coverImageData || 'resources/no-cover.jpg'}}"
+                 style="position: relative; top: 0; left: 0;"/>
             <!-- Profile-->
             <div style="position: absolute; top: 170px; left: 40px;">
                 <a href="#/user/{{wallOwner.username}}/wall/">
-                    <img class="thumbnail inline" ng-src="{{wallOwner.profileImageData || 'resources/defaultProfileImage.png'}}" />
+                    <img class="thumbnail inline"
+                         ng-src="{{wallOwner.profileImageData || 'resources/defaultProfileImage.png'}}"/>
                 </a>
+
                 <div class="inline">
                     <h2>
-                        <a href="#/user/{{wallOwner.username}}/wall/"><div class="outline">{{wallOwner.name}}</div></a>
+                        <a href="#/user/{{wallOwner.username}}/wall/">
+                            <div class="outline">{{wallOwner.name}}</div>
+                        </a>
                     </h2>
                     <div>
-                        <button class="btn btn-default" ng-if="wallOwner.status === 'invite'" type="submit" ng-click="sendFriendRequest(wallOwner)">
+                        <button class="btn btn-default" ng-if="wallOwner.status === 'invite'" type="submit"
+                                ng-click="sendFriendRequest(wallOwner)">
                             Send Friend Request
                         </button>
                         <button class="btn btn-default" ng-if="wallOwner.status === 'friend'" disabled>
@@ -27,7 +33,5 @@
 
             </div>
         </div>
-
-
     </div>
 </div>

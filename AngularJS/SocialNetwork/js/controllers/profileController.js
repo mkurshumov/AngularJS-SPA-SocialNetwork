@@ -49,7 +49,7 @@ app.controller('profileController',
 
         $scope.loadNewsFeed = function () {
             if (authService.isLoggedIn()) {
-                if ($scope.scrollPause){
+                if ($scope.scrollPause) {
                     return;
                 }
                 $scope.scrollPause = true;
@@ -96,12 +96,12 @@ app.controller('profileController',
             }
         };
 
-        $scope.profilePicture = function(fileInputField) {
+        $scope.profilePicture = function (fileInputField) {
 
             var file = fileInputField.files[0];
             if (file.type.match(/image\/.*/)) {
                 var reader = new FileReader();
-                reader.onload = function() {
+                reader.onload = function () {
                     $scope.userData.profileImageData = reader.result;
                     $("#uploadProfileImg").attr('src', reader.result);
                 };
@@ -111,12 +111,12 @@ app.controller('profileController',
             }
         };
 
-        $scope.coverPicture = function(fileInputField) {
+        $scope.coverPicture = function (fileInputField) {
             delete $scope.ownData.coverImageData;
             var file = fileInputField.files[0];
             if (file.type.match(/image\/.*/)) {
                 var reader = new FileReader();
-                reader.onload = function() {
+                reader.onload = function () {
                     $scope.userData.coverImageData = reader.result;
                     $("#uploadCoverImg").attr('src', reader.result)
                 };

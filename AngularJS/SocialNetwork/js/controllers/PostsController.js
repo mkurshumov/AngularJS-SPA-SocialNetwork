@@ -78,6 +78,5 @@ app.controller('postsController',
                 )
             }
         };
-        
     }
 );

@@ -11,6 +11,6 @@ app.factory('searchService',
                 };
                 $http(request).success(success).error(error);
             }
-        }
+        };
     }
 );

@@ -58,34 +58,7 @@ app.factory('postsService',
                     headers: authService.getAuthHeaders()
                 };
                 $http(request).success(success).error(error);
-            },
-
-            getPostById: function (id, success, error) {
-                var request = {
-                    method: 'GET',
-                    url: BASE_URL + 'Posts/' + id,
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            getPostDetailedLikes: function (id, success, error) {
-                var request = {
-                    method: 'GET',
-                    url: BASE_URL + 'Posts/' + id + '/likes',
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            getPostPreviewLikes: function (id, success, error) {
-                var request = {
-                    method: 'GET',
-                    url: BASE_URL + 'Posts/' + id + '/likes/preview',
-                    headers: authService.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
             }
-        }
+        };
     }
 );

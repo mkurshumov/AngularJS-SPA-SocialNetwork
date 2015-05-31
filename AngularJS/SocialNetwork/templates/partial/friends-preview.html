@@ -3,9 +3,11 @@
         Friends - <a href="{{friendsListPreview.userFriendsUrl}}">{{friendsListPreview.totalCount}} total</a>
     </div>
     <div class="panel-body">
-        <div ng-repeat="friend in friendsListPreview.friends" style="width: 110px; height: 110px; display: inline-block">
+        <div ng-repeat="friend in friendsListPreview.friends"
+             style="width: 110px; height: 110px; display: inline-block">
             <a href="#/user/{{friend.username}}/wall">
-                <img ng-src="{{friend.profileImageData || 'resources/defaultProfileImage.png'}}" title="{{friend.name}}" style="width: 100px; height: 100px; display: inline-block" class="thumbnail"/>
+                <img ng-src="{{friend.profileImageData || 'resources/defaultProfileImage.png'}}" title="{{friend.name}}"
+                     style="width: 100px; height: 100px; display: inline-block" class="thumbnail"/>
             </a>
         </div>
     </div>

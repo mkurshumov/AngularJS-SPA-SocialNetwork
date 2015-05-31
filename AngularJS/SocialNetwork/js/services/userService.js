@@ -12,7 +12,7 @@ app.factory('userService',
                 $http(request).success(success).error(error);
             },
 
-            editProfile: function(data, success, error) {
+            editProfile: function (data, success, error) {
                 var request = {
                     method: 'PUT',
                     url: BASE_URL + 'me',
@@ -22,7 +22,7 @@ app.factory('userService',
                 $http(request).success(success).error(error);
             },
 
-            changePassword: function(data, success, error) {
+            changePassword: function (data, success, error) {
                 var request = {
                     method: 'PUT',
                     url: BASE_URL + 'me/changepassword',
@@ -130,6 +130,6 @@ app.factory('userService',
                 };
                 $http(request).success(success).error(error);
             }
-        }
+        };
     }
 );

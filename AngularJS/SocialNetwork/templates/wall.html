@@ -5,18 +5,23 @@
     <br/>
 
     <div class="wrapper">
-        <div class="form-group col-md-9" ng-if="isOwnWall || wallOwner.isFriend" ng-include="'templates/partial/post.html'" style="display: inline-block; width: 37%; margin-left: 570px">
+        <div class="form-group col-md-9" ng-if="isOwnWall || wallOwner.isFriend"
+             ng-include="'templates/partial/post.html'" style="display: inline-block; width: 37%; margin-left: 570px">
         </div>
         <br/>
 
-        <div class="form-group col-md-9" ng-if="isLoggedIn() && wallOwner" ng-include="'templates/partial/posts.html'" infinite-scroll='loadUserWall()' infinite-scroll-disabled='scrollPause' nfinite-scroll-distance="0" style="width: 55.5%; display: inline-block; margin-left: 280px">
+        <div class="form-group col-md-9" ng-if="isLoggedIn() && wallOwner" ng-include="'templates/partial/posts.html'"
+             infinite-scroll='loadUserWall()' infinite-scroll-disabled='scrollPause' nfinite-scroll-distance="0"
+             style="width: 55.5%; display: inline-block; margin-left: 280px">
         </div>
         <div ng-controller="profileController" class="pull-right">
-            <div ng-if="isOwnWall" ng-init="loadOwnFriendsPreview()" ng-include="'templates/partial/friends-preview.html'">
+            <div ng-if="isOwnWall" ng-init="loadOwnFriendsPreview()"
+                 ng-include="'templates/partial/friends-preview.html'">
             </div>
         </div>
         <div ng-controller="userController" class="pull-right">
-            <div ng-if="!isOwnWall && wallOwner.isFriend" ng-init="loadUserFriendsPreview()" ng-include="'templates/partial/friends-preview.html'">
+            <div ng-if="!isOwnWall && wallOwner.isFriend" ng-init="loadUserFriendsPreview()"
+                 ng-include="'templates/partial/friends-preview.html'">
             </div>
         </div>
     </div>

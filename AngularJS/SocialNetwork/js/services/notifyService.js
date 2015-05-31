@@ -2,15 +2,16 @@
 
 app.factory('notifyService', function () {
         return {
-            showInfo: function(msg) {
+            showInfo: function (msg) {
                 noty({
                         text: msg,
                         type: 'success',
                         layout: 'bottomRight',
-                        timeout: 2000}
+                        timeout: 2000
+                    }
                 );
             },
-            showError: function(msg, serverError) {
+            showError: function (msg, serverError) {
                 // Collect errors to display from the server response
                 var errors = [];
                 if (serverError && serverError.data) {
@@ -38,9 +39,10 @@ app.factory('notifyService', function () {
                         text: msg,
                         type: 'error',
                         layout: 'bottomLeft',
-                        timeout: 5000}
+                        timeout: 5000
+                    }
                 );
             }
-        }
+        };
     }
 );
