@@ -24,7 +24,7 @@
   - [x] Display Post Data
   - [x] Display Box for Commenting
   - [x] Display Like/Unlike Buttons and Logic
-  - [x] Pop-up on User Hover
+  - [ ] Pop-up on User Hover
 
 ### User Wall 
   - [x] Display User Wall
